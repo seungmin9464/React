@@ -1,0 +1,37 @@
+.header{
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    // background-color: #fff;
+    // border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: .5;
+    z-index: 99;
+    & .logo{
+        display: flex;
+        width: 120px;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+    }
+    & ul{
+        width: auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        & li{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0 30px;
+            color: #fff;
+        }
+    }
+}
