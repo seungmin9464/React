@@ -8,47 +8,8 @@ canvas {
     width: 100%;
     height: 100%;
 }
-.section{
+section{
     width: 100%;
     height: 100vh;
     position: relative;
-}
-.portfolio{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    color: #707070;
-    line-height: 1.2;
-    font-size: 200px;
-    font-weight: 900;
-    text-align: center;
-    font-family: pretendard;
-    & > div{
-        width: 100%;
-        height: 270px;
-        background-color: #1a1a1a;
-        position: absolute;
-        filter: blur(5px);
-    }
-}
-.typing{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    & > p{
-        color: #fff;
-        line-height: 1.2;
-        font-size: 70px;
-        font-weight: 600;
-        font-family: pretendard;
-        text-align: center;
-    }
-
 }
