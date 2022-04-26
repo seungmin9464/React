@@ -1,24 +1,30 @@
-import style from './Main.module.scss'
-
-import './include/bubble'
+import FirstSection from "./include/FirstSection";
 import Header from "./include/Header";
 
-const Main = () => {
+import style from './Main.module.scss'
+
+import { Section } from './style'
+
+const Main = ({ theme }) => {
+    
     return (
         <div>
-            <Header/>
-            <section >
-                <canvas id="bubble"></canvas>
-            </section>
-            <section>
+            {/* header */}
+            <Header theme={ theme }/>
 
-            </section>
-            <section>
+            {/* Main */}
+            <Section>
+                {/* 첫번째 섹션 */}
+                <FirstSection theme={ theme }/>
+            </Section>
 
-            </section>
-            <section>
+            <Section>
 
-            </section>
+            </Section>
+
+            <Section>
+
+            </Section>
         </div>
     );
 };

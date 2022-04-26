@@ -1,4 +1,4 @@
-import style from './Header.module.scss'
+import { HeaderDiv, Logo, MenuList, MenuItem } from './style'
 
 const headerMenu = [
     { id: '1', name: 'MAIN' },
@@ -7,21 +7,21 @@ const headerMenu = [
     { id: '4', name: 'CONTACT' },
 ]
 
-const Header = () => {
+const Header = ({ theme }) => {
     return (
-        <div className={ style.header }>
-            <div className={ style.logo }>
+        <HeaderDiv>
+            <Logo>
                 LOGO
-            </div>
+            </Logo>
 
-            <ul>
+            <MenuList theme={theme}>
                 {
-                    headerMenu.map( item => <li key={ item.id }>
+                    headerMenu.map( item => <MenuItem key={ item.id }>
                         { item.name }
-                    </li> )
+                    </MenuItem> )
                 }
-            </ul>
-        </div>
+            </MenuList>
+        </HeaderDiv>
     );
 };
 
