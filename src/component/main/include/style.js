@@ -10,7 +10,7 @@ export const HeaderDiv = styled.div`
     align-items: center;
     justify-content: space-between;
     opacity: .5;
-    z-index: 99;
+    z-index: 999;
 `
 
 export const Logo = styled.div`

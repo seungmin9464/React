@@ -27,6 +27,7 @@ export const PortfolioInner = styled.div`
     width: 100%;
     height: 270px;
     background-color: #1a1a1a;
+    opacity: 0.95;
     position: absolute;
     filter: blur(5px);
     @media ${(props) => props.theme.large}{

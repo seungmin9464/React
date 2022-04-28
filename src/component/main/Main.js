@@ -1,6 +1,5 @@
 import FirstSection from "./include/FirstSection";
 import Header from "./include/Header";
-
 import style from './Main.module.scss'
 
 import { Section } from './style'
@@ -13,16 +12,20 @@ const Main = ({ theme }) => {
             <Header theme={ theme }/>
 
             {/* Main */}
-            <Section>
+            <Section name='MAIN'>
                 {/* 첫번째 섹션 */}
                 <FirstSection theme={ theme }/>
             </Section>
 
-            <Section>
+            <Section name='INTRO'>
 
             </Section>
 
-            <Section>
+            <Section name='CONTENTS'>
+
+            </Section>
+
+            <Section name='CONTACT'>
 
             </Section>
         </div>

@@ -1,4 +1,5 @@
 import { HeaderDiv, Logo, MenuList, MenuItem } from './style'
+import { Link } from 'react-scroll'
 
 const headerMenu = [
     { id: '1', name: 'MAIN' },
@@ -16,9 +17,18 @@ const Header = ({ theme }) => {
 
             <MenuList theme={theme}>
                 {
-                    headerMenu.map( item => <MenuItem key={ item.id }>
-                        { item.name }
-                    </MenuItem> )
+                    headerMenu.map( item =>
+                        <Link
+                            to = { item.name }
+                            spy = { true }
+                            smooth = { true }
+                            duration = { 500 }
+                        >
+                            <MenuItem key={ item.id }>
+                                { item.name }
+                            </MenuItem>
+                        </Link>
+                    )
                 }
             </MenuList>
         </HeaderDiv>
