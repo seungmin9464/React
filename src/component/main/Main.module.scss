@@ -3,10 +3,12 @@ body{
     &::-webkit-scrollbar-thumb {background-color: #979797; border-radius: 5px;}
     &::-webkit-scrollbar-track {background-color: #ddd;}
     background: #1a1a1a;
+    overflow-x: hidden;
 }
 
 .hamburger{
     display: none;
+    cursor: pointer;
     @media screen and (max-width: 576px){
         display: block;
     }

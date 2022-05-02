@@ -6,7 +6,7 @@ import style from '../Main.module.scss'
 
 const headerMenu = [
     { id: '1', name: 'MAIN' },
-    { id: '2', name: 'INTRO' },
+    { id: '2', name: 'ABOUT' },
     { id: '3', name: 'CONTENTS' },
     { id: '4', name: 'CONTACT' },
 ]
@@ -36,7 +36,7 @@ const Header = ({ theme }) => {
                             to = { item.name }
                             spy = { true }
                             smooth = { true }
-                            duration = { 500 }
+                            duration = { 1300 }
                         >
                             <MenuItem 
                                 key={ item.id }

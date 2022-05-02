@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "img": "../image/react.png",
+        "title": "React",
+        "background": "#291C16"
+    },
+    {
+        "id": "2",
+        "img": "../image/html.png",
+        "title": "HTML",
+        "background": "#282828"
+    },
+    {
+        "id": "3",
+        "img": "../image/scss.png",
+        "title": "SCSS/CSS",
+        "background": "#291821"
+    },
+    {
+        "id": "4",
+        "img": "../image/js.png",
+        "title": "JS/JAVASCRIPT",
+        "background": "#141D27"
+    },
+    {
+        "id": "5",
+        "img": "../image/photoshop.png",
+        "title": "Photoshop",
+        "background": "#132620"
+    },
+    {
+        "id": "6",
+        "img": "../image/xd.png",
+        "title": "XD",
+        "background": "#282514"
+    }
+]

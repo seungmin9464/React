@@ -1,8 +1,9 @@
-import FirstSection from "./include/FirstSection";
+import FirstSection from "./include/first/FirstSection";
 import Header from "./include/Header";
+import SecondSection from "./include/second/SecondSection";
 import style from './Main.module.scss'
 
-import { Section } from './style'
+import { Section } from './Style'
 
 const Main = ({ theme }) => {
     
@@ -17,8 +18,8 @@ const Main = ({ theme }) => {
                 <FirstSection theme={ theme }/>
             </Section>
 
-            <Section name='INTRO'>
-
+            <Section name='ABOUT' theme={ theme }>
+                <SecondSection theme={ theme }/>
             </Section>
 
             <Section name='CONTENTS'>

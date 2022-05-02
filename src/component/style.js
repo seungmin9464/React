@@ -3,7 +3,8 @@ const size = {
     medium: "768px",
     large: "992px",
     xl: "1200px",
-    xxl: "1400px"
+    xxl: "1400px",
+    xxxl: "1600px"
 }
 
 const theme = {
@@ -11,7 +12,8 @@ const theme = {
     medium: `(max-width: ${size.medium})`,
     large: `(max-width: ${size.large})`,
     xl: `(max-width: ${size.xl})`,
-    xxl: `(max-width: ${size.xxl})`
+    xxl: `(max-width: ${size.xxl})`,
+    xxxl: `(max-width: ${size.xxxl})`
 }
 
 export default theme;
