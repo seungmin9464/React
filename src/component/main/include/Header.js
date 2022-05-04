@@ -1,7 +1,8 @@
-import { HeaderDiv, Logo, MenuList, MenuItem } from './style'
+import { HeaderDiv, Logo, MenuList, MenuItem, Icon } from './Style'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { Link } from 'react-scroll'
 import { useState } from 'react';
+import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
 import style from '../Main.module.scss'
 
 const headerMenu = [
@@ -11,7 +12,7 @@ const headerMenu = [
     { id: '4', name: 'CONTACT' },
 ]
 
-const Header = ({ theme }) => {
+const Header = ({ chanege, isDarkMode, toggleDarkMode }) => {
 
     const [click, setClick] = useState( false )
     const handleClick = () => setClick(!click)
@@ -19,35 +20,45 @@ const Header = ({ theme }) => {
     const closeMenu = () => setClick(false)
 
     return (
-        <HeaderDiv>
+        <HeaderDiv chanege={ chanege }>
             <Logo>
                 LOGO
             </Logo>
 
-            <div className={style.hamburger} onClick={handleClick}>
-                {click ? (<FaTimes size={25} style={{ color: '#ffffff' }} />)
-                    : (<FaBars size={25} style={{ color: '#ffffff' }} />)}
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+
+                <Icon onClick={() => toggleDarkMode()} style={{ zIndex: '9999' }}>
+                    {isDarkMode ? 
+                        <BsFillSunFill style= {{color: '#ffd8a7'}}/> : 
+                        <BsFillMoonFill style={{ color: '#62009f' }}/>}
+                </Icon>
+
+                <div className={style.hamburger} onClick={handleClick} style={{ marginLeft: '20px' }}>
+                    {click ? (<FaTimes size={25} style={{ color: '#333' }} />)
+                        : (<FaBars size={25} style={{ color: '#333' }} />)}
+                </div>
+
+                <MenuList chanege={ chanege } className={click ? 'active' : ''}>
+                    {
+                        headerMenu.map( item =>
+                            <Link
+                                to = { item.name }
+                                spy = { true }
+                                smooth = { true }
+                                duration = { 1300 }
+                                key={ item.id }
+                            >
+                                <MenuItem 
+                                    onClick={closeMenu}
+                                >
+                                    { item.name }
+                                </MenuItem>
+                            </Link>
+                        )
+                    }
+                </MenuList>
             </div>
 
-            <MenuList theme={ theme } className={click ? 'active' : ''}>
-                {
-                    headerMenu.map( item =>
-                        <Link
-                            to = { item.name }
-                            spy = { true }
-                            smooth = { true }
-                            duration = { 1300 }
-                        >
-                            <MenuItem 
-                                key={ item.id }
-                                onClick={closeMenu}
-                            >
-                                { item.name }
-                            </MenuItem>
-                        </Link>
-                    )
-                }
-            </MenuList>
         </HeaderDiv>
     );
 };

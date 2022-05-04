@@ -5,28 +5,32 @@ import style from './Main.module.scss'
 
 import { Section } from './Style'
 
-const Main = ({ theme }) => {
+const Main = ({ isDarkMode, toggleDarkMode, chanege }) => {
     
     return (
         <div>
             {/* header */}
-            <Header theme={ theme }/>
+            <Header
+                chanege={ chanege }
+                isDarkMode={ isDarkMode } 
+                toggleDarkMode={ toggleDarkMode }
+            />
 
             {/* Main */}
-            <Section name='MAIN'>
+            <Section name='MAIN' chanege={ chanege }>
                 {/* 첫번째 섹션 */}
-                <FirstSection theme={ theme }/>
+                <FirstSection chanege={ chanege }/>
             </Section>
 
-            <Section name='ABOUT' theme={ theme }>
-                <SecondSection theme={ theme }/>
+            <Section name='ABOUT' chanege={ chanege } isDarkMode={ isDarkMode }>
+                <SecondSection chanege={ chanege } isDarkMode={ isDarkMode }/>
             </Section>
 
-            <Section name='CONTENTS'>
+            <Section name='CONTENTS' chanege={ chanege }>
 
             </Section>
 
-            <Section name='CONTACT'>
+            <Section name='CONTACT' chanege={ chanege }>
 
             </Section>
         </div>

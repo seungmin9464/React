@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 
 import GlobalStyle from './component/Global'
 import Main from './component/main/Main';
-import theme from './component/style';
+import { darkTheme, lightTheme, chanege } from './component/main/ChangeTheme';
 
 const App = () => {
+
+  const [isDarkMode, setIsDarkMode] = useState(true)
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev)
+  }
+
   return (
-    <div>
+    <ThemeProvider theme={ isDarkMode ? darkTheme : lightTheme }>
       <GlobalStyle/>
-      <Main theme={ theme }/>
-    </div>
+      <Main
+        chanege={ chanege }
+        isDarkMode={ isDarkMode } 
+        toggleDarkMode={ toggleDarkMode }
+      />
+    </ThemeProvider>
   );
 };
 

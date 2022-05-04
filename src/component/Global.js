@@ -101,5 +101,17 @@ const GlobalStyle = createGlobalStyle`
         overflow:visible; 
         cursor:pointer;
     }
+    body {
+	    background-color: ${(props) => props.theme.bgColor};
+        color: ${(props) => props.theme.color};
+        textColor: ${(props) => props.theme.textColor};
+        leftMenu: ${(props) => props.theme.leftMenu};
+        border: ${(props) => props.theme.border};
+        contentsBg: ${(props) => props.theme.contentsBg};
+
+        oppBg: ${(props) => props.theme.oppBg};
+        oppColor: ${(props) => props.theme.oppColor};
+        oppBorder: ${(props) => props.theme.oppBorder};
+    }
 `
 export default GlobalStyle

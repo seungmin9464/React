@@ -1,18 +1,18 @@
 import Typewriter from 'typewriter-effect';
 
-import { Portfolio, PortfolioInner, Typing, TypingText } from './style'
+import { Portfolio, PortfolioInner, Typing, TypingText } from './Style'
 
-const FirstSection = ({ theme }) => {
+const FirstSection = ({ chanege }) => {
     return (
         <>
-            <Portfolio theme={theme}>
+            <Portfolio chanege={chanege}>
                 PORT<br />FOLIO
-                <PortfolioInner theme={theme}></PortfolioInner>
+                <PortfolioInner chanege={chanege}></PortfolioInner>
             </Portfolio>
 
             <Typing>
-                <TypingText theme={theme}>Hello, I'm</TypingText>
-                <TypingText theme={theme}>
+                <TypingText chanege={chanege}>Hello, I'm</TypingText>
+                <TypingText chanege={chanege}>
                     <Typewriter
                         options={{
                             strings: ['Seungmin', 'Publisher', 'Developer'],

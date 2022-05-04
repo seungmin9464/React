@@ -9,25 +9,25 @@ import {
     SkillWrap,
     SkillList,
     SkillInner,
-} from './style'
+} from './Style'
 import { useState } from 'react';
 import skilldata from '../../asset/skilldata.json'
 
-const SecondSection = ({ theme }) => {
+const SecondSection = ({ chanege, isDarkMode }) => {
 
     const [data, setData] = useState(skilldata)
 
     return (
-        <SectionInner theme={ theme }>
+        <SectionInner chanege={ chanege }>
             {/* 왼쪽 */}
-            <LeftDiv theme={ theme }>
+            <LeftDiv chanege={ chanege }>
                 <H1>ABOUT</H1>
                 
-                <Profile theme={ theme }>
+                <Profile chanege={ chanege }>
                     <img src='./image/profile.jpg'/>
                 </Profile>
 
-                <ProfileArea theme={ theme }>
+                <ProfileArea chanege={ chanege }>
                     <p>안녕하세요.</p>
                     <p>평소 만들며 배우는걸 좋아했는데,&nbsp;</p>
                     <p>웹에도 관심이 생겨 배우게 되었습니다.&nbsp;</p>
@@ -37,23 +37,23 @@ const SecondSection = ({ theme }) => {
                 </ProfileArea>
                 <Programers 
                     href='https://programmers.co.kr/pr/backseungmin92_6900' target='_blank'
-                    theme={ theme }
+                    chanege={ chanege }
                     >
                         <span>프로필 보기</span>
                 </Programers>
             </LeftDiv>
 
             {/* 오른쪽 */}
-            <RightDiv theme={ theme }>
+            <RightDiv chanege={ chanege }>
                 <H1>SKILL</H1>
 
-                <SkillWrap>
+                <SkillWrap chanege={ chanege }>
                     {
                         data.map(item => <SkillList 
                             key={item.id}
-                            theme={ theme }>
-                            <SkillInner theme={ theme }>
-                                <div style={{ backgroundColor: item.background}}>
+                            chanege={ chanege }>
+                            <SkillInner chanege={ chanege }>
+                                <div style={{ backgroundColor: isDarkMode ? item.background : item.lightBg}}>
                                     <img src={item.img}/>
                                 </div>
                                 <p>{item.title}</p>

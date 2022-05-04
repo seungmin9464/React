@@ -9,11 +9,8 @@ export const HeaderDiv = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    opacity: .5;
     z-index: 999;
-    @media ${(props) => props.theme.mobile}{
-        opacity: 1;
-    }
+    opacity: .8;
 `
 
 export const Logo = styled.div`
@@ -22,11 +19,8 @@ export const Logo = styled.div`
     height: 100%;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: ${(props) => props.theme.color};
     font-family: pretendard; 
-    @media ${(props) => props.theme.mobile}{
-        width: auto;
-    }
 `
 
 export const MenuList = styled.ul`
@@ -34,7 +28,7 @@ export const MenuList = styled.ul`
     height: 100%;
     display: flex;
     align-items: center;
-    @media ${(props) => props.theme.mobile}{
+    @media ${(props) => props.chanege.mobile}{
         display: none;
         left: 100%;
         transition: ease .3s;
@@ -43,7 +37,7 @@ export const MenuList = styled.ul`
         top: 0px;
         width: 100%;
         height: 100%;
-        background-color: #000;
+        background-color: ${(props) => props.theme.leftMenu};
         flex-direction: column;
         z-index: -10;
         opacity: .7;
@@ -55,7 +49,7 @@ export const MenuList = styled.ul`
             width: 100%;
             height: 100%;
             left: 0%;
-            background-color: #000;
+            background-color: ${(props) => props.theme.leftMenu};
             flex-direction: column;
             z-index: -10;
             opacity: .85;
@@ -64,6 +58,7 @@ export const MenuList = styled.ul`
         & a{
             height: 100px;
             width: 100%;
+            background-color: ${(props) => props.theme.leftMenu};
             &:nth-child(1){
                 padding-top: 80px;
             }
@@ -78,6 +73,13 @@ export const MenuItem = styled.li`
     justify-content: center;
     cursor: pointer;
     padding: 0 30px;
-    color: #fff;
+    color: ${(props) => props.theme.color};
     font-family: pretendard; 
+`
+
+export const Icon = styled.i`
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    transition: ease 2s;
 `
