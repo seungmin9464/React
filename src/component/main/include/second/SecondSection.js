@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { 
     SectionInner, 
     LeftDiv, 
@@ -10,7 +11,6 @@ import {
     SkillList,
     SkillInner,
 } from './Style'
-import { useState } from 'react';
 import skilldata from '../../asset/skilldata.json'
 
 const SecondSection = ({ chanege, isDarkMode }) => {
@@ -21,7 +21,7 @@ const SecondSection = ({ chanege, isDarkMode }) => {
         <SectionInner chanege={ chanege }>
             {/* 왼쪽 */}
             <LeftDiv chanege={ chanege }>
-                <H1>ABOUT</H1>
+                <H1 chanege={ chanege }>ABOUT</H1>
                 
                 <Profile chanege={ chanege }>
                     <img src='./image/profile.jpg'/>
@@ -45,7 +45,7 @@ const SecondSection = ({ chanege, isDarkMode }) => {
 
             {/* 오른쪽 */}
             <RightDiv chanege={ chanege }>
-                <H1>SKILL</H1>
+                <H1 chanege={ chanege }>SKILL</H1>
 
                 <SkillWrap chanege={ chanege }>
                     {

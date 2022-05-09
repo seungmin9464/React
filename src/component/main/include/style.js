@@ -3,14 +3,16 @@ import styled from 'styled-components'
 export const HeaderDiv = styled.div`
     position: fixed;
     width: 100%;
-    height: 80px;
+    height: 60px;
     box-sizing: border-box;
     padding: 0 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     z-index: 999;
-    opacity: .8;
+    opacity: .7;
+    background-color: ${(props) => props.theme.bgColor};
+    border-bottom: 1px solid ${(props) => props.theme.textColor};
 `
 
 export const Logo = styled.div`
@@ -20,7 +22,23 @@ export const Logo = styled.div`
     align-items: center;
     justify-content: center;
     color: ${(props) => props.theme.color};
-    font-family: pretendard; 
+    font-family: pretendard;
+    cursor: pointer;
+    @media ${(props) => props.chanege.mobile}{
+        width: auto;
+    }
+`
+
+export const Hamburger = styled.div`
+    display: none;
+    cursor: pointer;
+    margin-left: 20px;
+    & svg{
+        color: ${(props) => props.theme.oppBg};
+    }
+    @media ${(props) => props.chanege.mobile}{
+        display: block;
+    }
 `
 
 export const MenuList = styled.ul`
@@ -28,6 +46,14 @@ export const MenuList = styled.ul`
     height: 100%;
     display: flex;
     align-items: center;
+    & a{
+        &.active{
+            li{
+                transition: ease .3s;
+                font-weight: 600;
+            }
+        }
+    }
     @media ${(props) => props.chanege.mobile}{
         display: none;
         left: 100%;
@@ -68,18 +94,30 @@ export const MenuList = styled.ul`
 
 export const MenuItem = styled.li`
     height: 100%;
+    padding: 0 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    padding: 0 30px;
+    transition: ease .3s;
+    font-family: pretendard;
     color: ${(props) => props.theme.color};
-    font-family: pretendard; 
+    @media ${(props) => props.chanege.xl}{
+        padding: 0 20px;
+    }
+    @media ${(props) => props.chanege.medium}{
+        padding: 0 10px;
+    }
 `
 
 export const Icon = styled.i`
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    font-size: 20px;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
     transition: ease 2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `

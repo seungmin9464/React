@@ -3,9 +3,6 @@ import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle` 
   ${reset} 
-  /* other styles */ 
-  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-
 
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -27,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
         font: inherit;
         vertical-align: baseline;
     }
-    /* HTML5 display-role reset for older browsers */
+
     article, aside, details, figcaption, figure, 
     footer, header, hgroup, menu, nav, section {
         display: block;
@@ -100,18 +97,21 @@ const GlobalStyle = createGlobalStyle`
         padding:0; 
         overflow:visible; 
         cursor:pointer;
+        border: ${(props) => props.theme.border};
+
     }
     body {
+        font-family: pretendard;
 	    background-color: ${(props) => props.theme.bgColor};
         color: ${(props) => props.theme.color};
         textColor: ${(props) => props.theme.textColor};
         leftMenu: ${(props) => props.theme.leftMenu};
-        border: ${(props) => props.theme.border};
         contentsBg: ${(props) => props.theme.contentsBg};
 
         oppBg: ${(props) => props.theme.oppBg};
         oppColor: ${(props) => props.theme.oppColor};
         oppBorder: ${(props) => props.theme.oppBorder};
+
     }
 `
 export default GlobalStyle

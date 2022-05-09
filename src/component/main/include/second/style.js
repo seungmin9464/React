@@ -17,16 +17,20 @@ export const LeftDiv = styled.div`
         width: 100%;
     }
     @media ${(props) => props.chanege.mobile}{
-        padding-top: 20px;
+        padding-top: 60px;
     }
 `
 
 export const H1 = styled.h1`
     font-family: pretendard;
     font-weight: 500;
+    font-size: 36px;
     color: ${(props) => props.theme.textColor};
     &.visi-h{
         visibility: hidden;
+    }
+    @media ${(props) => props.chanege.mobile}{
+        font-size: 24px;
     }
 `
 
