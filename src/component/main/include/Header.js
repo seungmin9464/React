@@ -1,68 +1,173 @@
 import { useState } from 'react';
-import { Link } from 'react-scroll'
+import { useTheme } from '../../../context/themeProvider';
 import { FaBars, FaTimes } from 'react-icons/fa'
-import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
-import { HeaderDiv, Logo, MenuList, MenuItem, Icon, Hamburger } from './Style'
-import style from '../Main.module.scss'
+import { media } from '../../../style/media_query';
+import { Link } from 'react-scroll/modules';
+import ThemeToggle from '../../../theme/ThemeToggle';
+import styled from 'styled-components';
 
 const headerMenu = [
-    { id: '1', name: 'MAIN' },
-    { id: '2', name: 'ABOUT' },
-    { id: '3', name: 'CONTENTS' },
-    { id: '4', name: 'CONTACT' },
+  { id: '1', name: 'MAIN' },
+  { id: '2', name: 'ABOUT' },
+  { id: '3', name: 'CONTENTS' },
+  { id: '4', name: 'CONTACT' },
 ]
 
-const Header = ({ chanege, isDarkMode, toggleDarkMode, onClickDarkMode, dark }) => {
+const Header = () => {
 
-    const [click, setClick] = useState( false )
-    const handleClick = () => setClick(!click)
+  const [click, setClick] = useState(false)
+  const [ThemeMode, toggleTheme] = useTheme();
+  
+  const handleClick = () => setClick(!click)
+  const closeMenu = () => setClick(false)
 
-    const closeMenu = () => setClick(false)
+  return (
+    <>
+      <HeaderDiv>
+        <LeftMenu>
+          <Link to='/'>
+            LOGO
+          </Link>
+        </LeftMenu>
 
-    return (
-        <HeaderDiv chanege={ chanege }>
-            <Logo chanege={ chanege }>
-                LOGO
-            </Logo>
+        <RightMenu>
+          <ThemeToggle toggle={toggleTheme} mode={ThemeMode}>
+            DarkMode
+          </ThemeToggle>
 
-            <div
-                style={{ display: 'flex', alignItems: 'center' }}>
-                <Icon onClick={() => {toggleDarkMode(); onClickDarkMode()}}>
-                    {isDarkMode ? 
-                        <BsFillSunFill style= {{color: '#ffd8a7'}}/> : 
-                        <BsFillMoonFill style={{ color: '#62009f' }}/>}
-                </Icon>
+          <Burger onClick={handleClick}>
+            {click ? <FaTimes /> : <FaBars />}
+          </Burger>
 
-                <Hamburger 
-                    onClick={handleClick} 
-                    chanege={ chanege }>
-                    {click ? 
-                        (<FaTimes size={25}/>) : 
-                        (<FaBars size={25}/>)}
-                </Hamburger>
-
-                <MenuList chanege={ chanege } className={click ? 'active' : ''}>
-                    {
-                        headerMenu.map( item =>
-                            <Link
-                                to = { item.name }
-                                spy = { true }
-                                smooth = { true }
-                                duration = { 1300 }
-                                key={ item.id } >
-                                <MenuItem 
-                                    onClick={closeMenu}
-                                    chanege={ chanege }>
-                                    { item.name }
-                                </MenuItem>
-                            </Link>
-                        )
-                    }
-                </MenuList>
-            </div>
-
-        </HeaderDiv>
-    );
+          <RightMenuList className={click ? 'active' : ''}>
+            { headerMenu.map(item =>
+                <Link
+                  to={ item.name }
+                  spy={ true }
+                  smooth={ true }
+                  duration={ 1300 }
+                  offset={ -50 }
+                  key={ item.id }>
+                  <MenuItem
+                    onClick={closeMenu} >
+                    {item.name}
+                  </MenuItem>
+                </Link> ) }
+          </RightMenuList>
+        </RightMenu>
+      </HeaderDiv>
+    </>
+  );
 };
 
 export default Header;
+
+const HeaderDiv = styled.div`
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  padding: 0px 20px;
+  box-sizing: border-box;
+  z-index: 9999;
+  background-color: ${({ theme }) => theme.bgColor};
+  border-bottom: ${({ theme }) => theme.borderColor};
+  & a{ text-decoration: none; }
+`
+
+const LeftMenu = styled.div`
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  font-weight: 400;
+  font-family: pretendard;
+`
+
+const Burger = styled.div`
+  width: 30px;
+  height: 30px;
+  color: ${({ theme }) => theme.textColor};
+  display: none;
+  align-items: center;
+  font-size: 25px;
+  z-index: 9999;
+  cursor: pointer;
+  ${media.medium`display: inline-block;`}
+`
+
+const RightMenu = styled.div`
+  display: flex;
+  align-items: center;
+  width: auto;
+  padding: 0;
+`
+
+const RightMenuList = styled.div`
+  display: flex;
+  ${media.medium`
+    position: fixed;
+    display: flex;
+    left: 100%;
+    top: 60px;
+    transition: ease .3s;
+    padding-top: 60px;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    align-items: center;
+    background-color: ${({ theme }) => theme.bgColor};
+    &.active{left: 0%;
+    }
+  `}
+`
+
+const MenuItem = styled.li`
+  list-style: none;
+  color: ${({ theme }) => theme.textColor};
+  padding: 0 10px;
+  font-size: 16px;
+  position: relative;
+  font-weight: 500;
+  font-family: pretendard;
+  z-index: 2;
+  cursor: pointer;
+  &::after{
+    content: '';
+    position: absolute;
+    width: 0%;
+    background-color: ${({ theme }) => theme.navPoint};
+    height: 10px;
+    bottom: 0;
+    left: 10%;
+    z-index: -1;
+    transition: ease .3s;
+  }
+  &:hover{
+    &::after{
+      width: 80%;
+    }
+  }
+  ${media.medium`
+    font-size: 25px;
+    font-weight: 900;
+    padding: 30px 0;
+
+    width: 100vw;
+    text-align: center;
+    &::after{
+      bottom: 30px;
+      height: 13px;
+      left: -10%;
+    }
+    &:hover{
+      &::after{
+        /* width: 120%; */
+        width: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+`} 
+`
