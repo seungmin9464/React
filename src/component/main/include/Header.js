@@ -24,37 +24,39 @@ const Header = () => {
   return (
     <>
       <HeaderDiv>
-        <LeftMenu>
-          <Link to='/'>
-            LOGO
-          </Link>
-        </LeftMenu>
+        <div>
+          <LeftMenu>
+            <Link to='/'>
+              <img src='./image/logo.png'/>
+            </Link>
+          </LeftMenu>
 
-        <RightMenu>
-          <ThemeToggle toggle={toggleTheme} mode={ThemeMode}>
-            DarkMode
-          </ThemeToggle>
+          <RightMenu>
+            <ThemeToggle toggle={toggleTheme} mode={ThemeMode}>
+              DarkMode
+            </ThemeToggle>
 
-          <Burger onClick={handleClick}>
-            {click ? <FaTimes /> : <FaBars />}
-          </Burger>
+            <Burger onClick={handleClick}>
+              {click ? <FaTimes /> : <FaBars />}
+            </Burger>
 
-          <RightMenuList className={click ? 'active' : ''}>
-            { headerMenu.map(item =>
-                <Link
-                  to={ item.name }
-                  spy={ true }
-                  smooth={ true }
-                  duration={ 1300 }
-                  offset={ -50 }
-                  key={ item.id }>
-                  <MenuItem
-                    onClick={closeMenu} >
-                    {item.name}
-                  </MenuItem>
-                </Link> ) }
-          </RightMenuList>
-        </RightMenu>
+            <RightMenuList className={click ? 'active' : ''}>
+              { headerMenu.map(item =>
+                  <Link
+                    to={ item.name }
+                    spy={ true }
+                    smooth={ true }
+                    duration={ 1300 }
+                    offset={ -50 }
+                    key={ item.id }>
+                    <MenuItem
+                      onClick={closeMenu} >
+                      {item.name}
+                    </MenuItem>
+                  </Link> ) }
+            </RightMenuList>
+          </RightMenu>
+        </div>
       </HeaderDiv>
     </>
   );
@@ -64,16 +66,20 @@ export default Header;
 
 const HeaderDiv = styled.div`
   position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-  height: 60px;
-  padding: 0px 20px;
   box-sizing: border-box;
   z-index: 9999;
   background-color: ${({ theme }) => theme.bgColor};
   border-bottom: ${({ theme }) => theme.borderColor};
+  & > div{
+    max-width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+    height: 60px;
+    padding: 0px 20px;
+  }
   & a{ text-decoration: none; }
 `
 
@@ -81,8 +87,17 @@ const LeftMenu = styled.div`
   display: flex;
   align-items: center;
   z-index: 9999;
-  font-weight: 400;
+  font-weight: 900;
   font-family: pretendard;
+  font-size: 25px;
+  letter-spacing: -2px;
+  border-bottom: ${({ theme }) => theme.textColor};
+  & a{
+    width: 35px;
+    display: flex;
+    align-items: center;
+    & img{ max-width: 100%; }
+  }
 `
 
 const Burger = styled.div`
@@ -118,7 +133,9 @@ const RightMenuList = styled.div`
     min-height: 100%;
     align-items: center;
     background-color: ${({ theme }) => theme.bgColor};
-    &.active{left: 0%;
+    transition-delay: 1s;
+    &.active{
+      left: 0%;
     }
   `}
 `
@@ -153,7 +170,6 @@ const MenuItem = styled.li`
     font-size: 25px;
     font-weight: 900;
     padding: 30px 0;
-
     width: 100vw;
     text-align: center;
     &::after{

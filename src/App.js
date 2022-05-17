@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Library from './component/library/Library';
 import Main from './component/main/Main';
+import Net from './component/movie/Net';
 import ThemeProvider from './context/themeProvider';
 import { GlobalStyle } from './theme/GlobalStyles';
 
@@ -12,7 +12,7 @@ const App = () => {
         <GlobalStyle/>
         <Routes>
           <Route path='/' element={<Main/>}/>
-          <Route path='/Library' element={<Library/>}/>
+          <Route path='/netflex' element={<Net/>}/>
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

@@ -7,9 +7,16 @@ export const FlexContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  padding: 0px 30px;
   transition: all 0.2s linear;
   width: calc(100%-2rem);
-  height: 100vh;
-  ${media.mobile` padding: 0 15px; `}
+  height: 100%;
+  ${media.tablet`
+    padding-top: 60px;
+    height: 100%;
+    min-height: 100vh;
+  `}
+  ${media.mobile` 
+    height: inherit;
+    min-height: 100%;
+  `}
 `;

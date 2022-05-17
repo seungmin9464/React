@@ -12,7 +12,7 @@ export const media = {
     }
   `,
   tablet: (...args) => css`
-    @media (max-width: 992px) {
+    @media (max-width: 850px) {
       ${css(...args)}
     }
   `,

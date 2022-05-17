@@ -5,35 +5,49 @@ import { media } from '../../style/media_query';
 const FirstSection = () => {
   return (
     <MainTyping name='MAIN'>
-      <Portfolio>
-        PORT<br />FOLIO
-        <div></div>
-      </Portfolio>
+      <div>
+        <Portfolio>
+          PORT<br />FOLIO
+          <div></div>
+        </Portfolio>
 
-      <Typing>
-        Hello, I'm
-        <Typewriter
-          options={{
-            strings: ['Seungmin', 'Publisher', 'Developer'],
-            autoStart: true,
-            loop: true,
-          }}
-        />
-      </Typing>
+        <Typing>
+          Hello, I'm
+          <Typewriter
+            options={{
+              strings: ['Seungmin', 'Publisher', 'Developer'],
+              autoStart: true,
+              loop: true,
+            }}
+          />
+        </Typing>
+      </div>
     </MainTyping>
   );
 };
 
 export default FirstSection;
 
-const MainTyping = styled.main`
+const MainTyping = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  ${media.mobile` height: 90vh; `}
+  & > div{
+    display: flex;
+    max-width: 1400px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    margin: 0 auto;
+  }
+  ${media.mobile` 
+    height: 100vh;
+    top: -60px;
+  `}
 `
 
 const Typing = styled.p`
@@ -48,7 +62,7 @@ const Typing = styled.p`
   font-weight: 600;
   font-family: pretendard;
   top: 0;
-  ${media.medium`font-size: 50px;`}
+  ${media.medium`font-size: 35px;`}
 `
 
 const Portfolio = styled.h1`
@@ -70,6 +84,8 @@ const Portfolio = styled.h1`
     opacity: 0.98;
     position: absolute;
     filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
   }
   ${media.medium`
     font-size: 150px;
