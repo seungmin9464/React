@@ -27,7 +27,7 @@ const ThirdSection = () => {
             <ContentsText>
 
               <div>
-                <Title>준비중입니다.</Title>
+                <Title>홈페이지 버튼을 눌러주세요. <br/>준비중입니다.</Title>
               </div>
 
               <LinkMove>

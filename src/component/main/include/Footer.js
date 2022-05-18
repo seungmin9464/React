@@ -8,7 +8,9 @@ const Footer = () => {
     <FooterDiv>
       <div>
       <FooterLogo>
-        <p>LOGO</p>
+        <a href='/'>
+          <img src='./image/logo.png'/>
+        </a>
       </FooterLogo>
 
       <FooterLink>
@@ -16,7 +18,7 @@ const Footer = () => {
           <AiFillGithub/>
         </a>
 
-        <a href='' target='_blank'>
+        <a href='https://invited-cosmonaut-feb.notion.site/MAIN-db5452133653475fadfc9f26a04dff88' target='_blank'>
           <SiNotion/>
         </a>
       </FooterLink>
@@ -60,6 +62,14 @@ const FooterDiv = styled.div`
 
 const FooterLogo = styled.p`
   width: 100%;
+  & a{ 
+    width: 40px; 
+    display: block;
+    margin: 0 auto;
+    & img{
+      width: 100%;
+    }
+  }
 `
 
 const FooterLink = styled.ul`

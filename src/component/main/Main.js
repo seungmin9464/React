@@ -4,6 +4,7 @@ import FirstSection from "./FirstSection";
 import SecondSection from "./SecondSection";
 import ThirdSection from "./ThirdSection";
 import Footer from "./include/Footer";
+import FourthSection from './include/fourth/FourthSection';
 
 const Main = () => {
 
@@ -12,6 +13,7 @@ const Main = () => {
       <FirstSection/>
       <SecondSection/>
       <ThirdSection/>
+      <FourthSection/>
       <Footer/>
     </MainLayout>
   );

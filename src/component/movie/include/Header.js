@@ -32,6 +32,8 @@ const Header = ({
             onClick={() => setActiveGenre(28)}>TV</button>
           <button
             onClick={() => setActiveGenre(18)}>Movie</button>
+          <button
+            onClick={() => setActiveGenre(18)}>Trend</button>
         </BtnWrap>
       </LeftDiv>
 
@@ -45,15 +47,13 @@ const FilterContainer = styled.header`
   display: flex;
   width: 100%;
   padding: 0px 20px;
-  border-bottom: 1px solid #ddd;
   height: 50px;
-  margin-bottom: 20px;
 `
 
 const LeftDiv = styled.div`
   display: flex;
   height: 50px;
-  align-items: center;
+  align-items: flex-end;
 `
 const Logo = styled.div`
   color: #e50914;
@@ -62,7 +62,8 @@ const Logo = styled.div`
 `
 const BtnWrap = styled.div`
   margin-left: 10px;
+  margin-bottom: 5px;
   & button{
-    color: ${({ theme }) => theme.textColor};
+    color: #fff;
   }
 `

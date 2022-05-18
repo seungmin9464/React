@@ -15,7 +15,7 @@ const settings = {
       breakpoint: 1024,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToScroll: 3,
       }
     },
   ]
@@ -24,16 +24,30 @@ const settings = {
 const SliderDiv = ({ 
   filtered, 
   rated,
-  comming }) => {
+  comming,
+  trand }) => {
   return (
     <SlideWrap>
+      <SlideTitle>트렌드 콘텐츠</SlideTitle>
+      <Slider {...settings}>
+        {
+          trand.map((movie) => {
+            return <Movie
+            key={ movie.id }
+            movie={ movie }
+            onClick={ () => {} }/>
+          })
+        }
+      </Slider>
+
       <SlideTitle>지금 뜨는 콘텐츠</SlideTitle>
       <Slider {...settings}>
         {
           filtered.map((movie) => {
             return <Movie
-              key={ movie.id }
-              movie={ movie }/>
+            key={ movie.id }
+            movie={ movie }
+            onClick={ () => {} }/>
           })
         }
       </Slider>
@@ -73,7 +87,7 @@ const SlideTitle = styled.div`
   font-size: 20px;
   font-weight: 700;
   margin-top: 20px;
-  color: ${({ theme }) => theme.textColor};
+  color: #fff;
   &:first-of-type{
     margin-top: 0px;
   }

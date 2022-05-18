@@ -10,7 +10,7 @@ import {
     SkillWrap,
     SkillList,
     SkillInner,
-} from './Style'
+} from './style'
 import skilldata from '../../asset/skilldata.json'
 
 const SecondSection = ({ chanege, isDarkMode }) => {

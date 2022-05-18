@@ -1,10 +1,10 @@
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Movie = ({ movie }) => {
   return (
     <Card>
-      <div>{ movie.title }</div>
-      <img src={"http://image.tmdb.org/t/p/w500" + movie.backdrop_path} alt=''/>
+      <img src={"http://image.tmdb.org/t/p/w500" + movie.poster_path} alt='' />
     </Card>
   );
 };
@@ -18,13 +18,14 @@ const Card = styled.div`
     color: #fff;
     font-weight: 600;
     margin-left: 10px;
-    width: 120px;
+    width: 100px;
     height: 36px;
     font-size: 12px;
+    word-break: keep-all;
   }
   & img{
     width: 100%;
-    height: 25vh;
+    height: 300px;
     object-fit: cover;
     border-radius: 1rem;
     padding: 5px;
