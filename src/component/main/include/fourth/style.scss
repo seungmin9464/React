@@ -1,0 +1,16 @@
+.slick-arrow{
+    @media screen and (max-width: 1600px){
+        display: none !important;
+    }
+}
+.slick-dots li.slick-active button:before{color: #999;}
+.slick-dots li button:before{ color: #999; }
+.slick-slide{ 
+    opacity: .5;
+    transform: scale(.8);
+    transition: .3s;
+    &.slick-center{
+        opacity: 1;
+        transform: scale(1);
+    }
+}

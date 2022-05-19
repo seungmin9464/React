@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
+import { media } from "../../style/media_query";
 import styled from 'styled-components';
-
 const Movie = ({ movie }) => {
   return (
     <Card>
@@ -31,4 +31,9 @@ const Card = styled.div`
     padding: 5px;
     box-sizing: border-box;
   }
+  ${media.mobile`
+    & img{
+      height: auto;
+    }
+  `}
 `

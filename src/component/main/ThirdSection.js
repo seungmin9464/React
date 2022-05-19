@@ -16,8 +16,6 @@ const linklist = [
 ]
 
 const ThirdSection = () => {
-
-
   return (
     <ContentsWrap name='CONTENTS'>
       <div>
@@ -125,7 +123,6 @@ const ContentsInner = styled.div`
   width: 100%;
   height: 60vh;
   display: flex;
-  margin: 50px 0;
   align-items: center;
   ${media.desktop`
     flex-direction: column;
@@ -162,6 +159,10 @@ const Title = styled.h3`
   font-weight: 500;
   width: 100%;
   text-align: center;
+  ${media.tablet`
+    font-size: 18px;
+    margin-top: 20px;
+  `}
 `
 
 const LinkMove = styled.ul`
@@ -178,12 +179,12 @@ const LinkList = styled.ul`
     text-align: center;
     display: inline-block;
     background-color: ${({ theme }) => theme.footer};
+    border: ${({ theme }) => theme.borderColor};
     font-family: pretendard;
     transition: ease .3s;
     border-radius: 50px;
     font-weight: 600;
     padding: 7px 0;
-    border: ${({ theme }) => theme.borderColor};
     &:hover{
       background-color: ${({ theme }) => theme.navPoint};
     }
@@ -197,6 +198,9 @@ const RightDiv = styled.div`
   ${media.tablet`
     width: 100%;
     height: 150%;
+  `}
+  ${media.medium`
+    height: 100%;
   `}
   ${media.mobile`
     height: 100%;
@@ -214,7 +218,11 @@ const ContentsArea = styled.div`
   `}
   ${media.tablet`
     padding-top: 0px;
-    height: 150%;
+    height: 100%;
+  `}
+  ${media.medium`
+    padding-top: 0px;
+    height: 100%;
   `}
   ${media.mobile`
     height: 100%;
@@ -236,9 +244,9 @@ const Contents1 = styled.div`
   `}
   ${media.tablet`
     width: 100%;
-    height: 100%;
+    height: 70%;
     right: -20px;
-    bottom: 10px;
+    bottom: 40px;
   `}
   ${media.mobile`
     width: 90%;
@@ -264,9 +272,9 @@ const Contents2 = styled.div`
   `}
   ${media.tablet`
     width: 100%;
-    height: 100%;
+    height: 70%;
     left: -20px;
-    top: 10px;
+    top: 40px;
   `}
   ${media.mobile`
     width: 90%;
