@@ -1,115 +1,118 @@
-import { useEffect, useState } from "react";
 import styled from 'styled-components';
-import Banner from "./include/Banner";
-import Header from "./include/Header";
-import SliderDiv from "./include/Slider";
-import Movie from "./Movie";
-import { media } from "../../style/media_query";
+import { async } from 'q';
+import React, { useEffect, useState } from 'react';
+import Movie from './components/Movie';
+import { media } from '../../style/media_query';
+import './style.css'
+
+const FEATURED_API = 'https://api.themoviedb.org/3/discover/movie?api_key=b2fa540dedf947a97be9fdbb2c662548&language=ko&sort_by=popularity.desc'
+
+const IMG_API = 'http://image.tmdb.org/t/p/w1280'
+
+const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?&api_key=b2fa540dedf947a97be9fdbb2c662548&query='
+
 
 const Net = () => {
-    const [trand, setTrand] = useState([])
-    const [popular, setPopular] = useState([])
-    const [filtered, setFiltered] = useState([])
-    const [rated, setRated] = useState([])
-    const [comming, setComming] = useState([])
-    const [mainBanner, setMainBanner] = useState([])
-    const [activeGenre, setActiveGenre] = useState(0)
 
-    const fetchPopular = async () => {
-        const tranding = await fetch('https://api.themoviedb.org/3/trending/all/day?api_key=b2fa540dedf947a97be9fdbb2c662548&language=ko')
-
-        const data = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=b2fa540dedf947a97be9fdbb2c662548&language=ko')
-
-        const best = await fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=b2fa540dedf947a97be9fdbb2c662548&language=ko')
-
-        const comm = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=b2fa540dedf947a97be9fdbb2c662548&language=ko')
-
-        const banner = await fetch('https://api.themoviedb.org/3/trending/all/day?api_key=b2fa540dedf947a97be9fdbb2c662548&language=ko')
-
-        const trand = await tranding.json()
-        const movies = await data.json()
-        const rated = await best.json()
-        const comming = await comm.json()
-        const mainBanner = await banner.json()
-
-        setPopular(movies.results)
-        setFiltered(movies.results)
-        setRated(rated.results)
-        setComming(comming.results)
-        setMainBanner(mainBanner.results)
-        setTrand(trand.results)
-    }
+    const [movies, setMovies] = useState([])
+    const [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
-        fetchPopular()
+        fetch(FEATURED_API)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setMovies(data.results)
+            })
     }, [])
 
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+
+        if(searchTerm){
+            fetch(SEARCH_API + searchTerm)
+                .then((res) => res.json())
+                .then((data) => {
+                    setMovies(data.results)
+                })
+
+            setSearchTerm('')
+        }
+    }
+
+    const handleOnChange = (e) => {
+        // setSearchTerm(e.target.value)
+        let { value } = { ...e.target }
+        setSearchTerm(value)
+    }
+
+    const handleOnLogo = (e) => {
+        fetch(FEATURED_API)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                 setMovies(data.results)
+             })
+    }
+
     return (
-        <Wrap>
-            <PopilarWrap>
-                <Header
-                    popular={popular}
-                    setFiltered={setFiltered}
-                    activeGenre={activeGenre}
-                    setActiveGenre={setActiveGenre} />
-
-                <MainBanner filtered={filtered}>
-                    {
-                        mainBanner.map((movie) => {
-                            return <Banner
-                                key={ movie.id }
-                                movie={ movie }>
-                            </Banner>
-                        })
-                    }
-                </MainBanner>
-
-                <PopilarMovies>
-                    <SliderDiv
-                        filtered={filtered}
-                        rated={rated}
-                        comming={comming}
-                        trand={ trand } />
-                </PopilarMovies>
-
-            </PopilarWrap>
-        </Wrap>
+        <>
+            <Header>
+                <button onClick={ handleOnLogo }><Logo>BEAKFLIX</Logo></button>
+                <form onSubmit={ handleOnSubmit }>
+                    <input 
+                        type='text' 
+                        placeholder='search...' 
+                        name='search'
+                        value={ searchTerm }
+                        onChange={ handleOnChange }/>
+                </form>
+            </Header>
+            <MovieContainer>
+                {
+                    movies.length > 0 &&
+                    movies.map((movie) =>
+                        <Movie key={movie.id} {...movie} />)
+                }
+            </MovieContainer>
+        </>
     );
 };
 
 export default Net;
 
-const Wrap = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-`
-const PopilarWrap = styled.div`
-    max-width: 1200px;
-    margin: 0 auto;
-    box-sizing: border-box;
+const MovieContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
 `
 
-const MainBanner = styled.div`
-    width: 100%;
-    height: 400px;
-    margin-bottom: 20px;
-    overflow: hidden;
-    & div:nth-child(n+100){
-        display: none;
+const Header = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    & input{
+        border-radius: 50px;
+        border: 1px solid #787878;
+        width: 250px;
+        height: 40px;
+        display: inline-block;
+        padding: 10px;
     }
     ${media.medium`
-        height: 280px;
-    `}
-    ${media.mobile`
-        height: 200px;
+        & input{
+            width: 150px;
+            height: 25px;
+        }
     `}
 `
 
-const PopilarMovies = styled.div`
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-column-gap: 1rem;
-    grid-row-gap: 2rem;
+const Logo = styled.div`
+    font-size: 40px;
+    font-weight: 900;
+    color: #e50914;
+    letter-spacing: -2px;
+    ${media.medium`
+        font-size: 25px;
+    `}
 `
