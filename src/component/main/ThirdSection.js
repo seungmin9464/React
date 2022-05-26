@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { media } from '../../style/media_query';
+import SliderDiv from './include/third/Slider';
 
 const linklist = [
   {
     id: 1,
-    link: '/netflex',
+    link: '/movie',
     name: '홈페이지',
   },
   {
@@ -25,7 +26,9 @@ const ThirdSection = () => {
             <ContentsText>
 
               <div>
-                <Title>홈페이지 버튼을 눌러주세요. <br/>준비중입니다.</Title>
+                <Title>
+                  영화 오픈 DATA를 받아 <br/>영화와 드라마 TV와 관련된 정보들을 볼 수 있도록 제작 하였습니다.
+                </Title>
               </div>
 
               <LinkMove>
@@ -49,38 +52,8 @@ const ThirdSection = () => {
             </ContentsArea>
           </RightDiv>
         </ContentsInner>
-
-{/* 
-        <ContentsInner>
-          <LeftDiv>
-            <ContentsText>
-
-              <div>
-                <Title>제목2</Title>
-              </div>
-
-              <LinkMove>
-                {
-                  linklist.map(item =>
-                    <LinkList
-                      key={item.id}>
-                      <Link to={item.link}>
-                        {item.name}
-                      </Link>
-                    </LinkList>)
-                }
-              </LinkMove>
-            </ContentsText>
-          </LeftDiv>
-
-          <RightDiv>
-            <ContentsArea>
-              <Contents1 />
-              <Contents2 />
-            </ContentsArea>
-          </RightDiv>
-        </ContentsInner> */}
       </div>
+      <SliderDiv/>
     </ContentsWrap>
   );
 };
@@ -104,6 +77,16 @@ const ContentsWrap = styled.div`
     width: 100%;
     margin: 0 auto;
   }
+  ${media.desktop`
+    & > div{
+      width: inherit;
+      margin: inherit;
+      padding: 0;
+      &:nth-child(2){
+        margin-top: 100px;
+      }
+    }
+  `}
 `
 
 const H1 = styled.h1`

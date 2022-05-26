@@ -12,7 +12,7 @@ const App = () => {
         <GlobalStyle/>
         <Routes>
           <Route path='/' element={<Main/>}/>
-          <Route path='/netflex' element={<Net/>}/>
+          <Route path='/movie' element={<Net/>}/>
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

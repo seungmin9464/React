@@ -4,18 +4,18 @@ import React, { useEffect, useState } from 'react';
 import Movie from './components/Movie';
 import { media } from '../../style/media_query';
 import './style.css'
+import { API_KEY, API_URL, IMAGE_BASE_URL } from './api/Api';
+import Slider from './include/Slider';
+import SliderDiv from './include/Slider';
 
-const FEATURED_API = 'https://api.themoviedb.org/3/discover/movie?api_key=b2fa540dedf947a97be9fdbb2c662548&language=ko&sort_by=popularity.desc'
+const FEATURED_API = `${API_URL}discover/movie?api_key=${API_KEY}&language=ko&sort_by=popularity.desc`
 
-const IMG_API = 'http://image.tmdb.org/t/p/w1280'
-
-const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?&api_key=b2fa540dedf947a97be9fdbb2c662548&query='
-
+const SEARCH_API = `${API_URL}search/movie?&api_key=${API_KEY}&query=`
 
 const Net = () => {
-
     const [movies, setMovies] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
+    const [selide, setSlide] = useState([])
 
     useEffect(() => {
         fetch(FEATURED_API)
@@ -68,6 +68,7 @@ const Net = () => {
                         onChange={ handleOnChange }/>
                 </form>
             </Header>
+
             <MovieContainer>
                 {
                     movies.length > 0 &&
@@ -82,8 +83,12 @@ const Net = () => {
 export default Net;
 
 const MovieContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    ${media.desktop`
+        grid-template-columns: 1fr 1fr;
+    `}
 `
 
 const Header = styled.div`

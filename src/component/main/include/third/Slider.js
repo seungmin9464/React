@@ -1,51 +1,8 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import "swiper/css";
 import styled from 'styled-components';
 import { media } from '../../../../style/media_query';
 import { useTheme } from '../../../../context/themeProvider';
-
-const settings = {
-  dots: true,
-  infinite: true,
-  slidesToShow: 3,
-  speed: 500,
-  autoplay: false,
-  autoplaySpeed: 2500,
-  pauseOnHover: true,
-  className: "center",
-  centerMode: true,
-  centerPadding: "60px",
-  afterChange: function (index) {
-    console.log(
-      `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-    );
-  },
-  responsive: [
-    {
-      breakpoint: 1600,
-      arrows: false,
-      settings: {
-        slidesToShow: 3,
-      }
-    },
-    {
-      breakpoint: 1100,
-      arrows: false,
-      settings: {
-        slidesToShow: 1,
-      }
-    },
-    {
-      breakpoint: 850,
-      arrows: false,
-      settings: {
-        centerPadding: "20px",
-        slidesToShow: 1,
-      }
-    },
-  ]
-};
 
 const slideData = [
   { id: 1, img: './image/pub/img-pub1.png', link: 'https://www.kiwontech.com/' },
@@ -62,36 +19,46 @@ const slideData = [
 const SliderDiv = () => {
   return (
     <SlideWrap>
-      <H4>홈페이지 퍼블리싱</H4>
-      <SlideInner className="pubSlide">
-        <Slider {...settings} style={{ display: 'flex', alignItems: 'center' }}>
+      <h2>홈페이지 퍼블리싱</h2>
+      <SlideInner>
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={10}
+          scrollbar={{ draggable: true }}
+          pagination={{ clickable: true }}
+          centeredSlides={true}
+          loop={true}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          }}
+        >
           {
-            slideData.map(item => <SlideContents key={item.id}>
-              <Contents>
-                <a href={item.link} target='_blank'>
-                  <img src={item.img} />
-                </a>
-              </Contents>
-            </SlideContents>)
+            slideData.map(item =>
+              <SwiperSlide>
+                <SlideContents key={item.id}>
+                  <Contents>
+                    <a href={item.link} target='_blank'>
+                      <img src={item.img} />
+                    </a>
+                  </Contents>
+                </SlideContents>
+              </SwiperSlide>
+            )
           }
-        </Slider>
+        </Swiper>
       </SlideInner>
     </SlideWrap>
   );
 };
 
 export default SliderDiv;
-const H4 = styled.h4`
-  font-family: pretendard;
-  font-weight: 500;
-  font-size: 20px;
-  color: #8d8d8d;
-  width: 100%;
-  ${media.desktop`
-    text-align: center;
-    font-size: 25px;
-  `}
-`
 
 const SlideWrap = styled.div`
   width: 100%;
@@ -103,29 +70,40 @@ const SlideWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .slick-dots li button:before{
+  & h2{
+    font-family: pretendard;
+    font-weight: 500;
+    font-size: 25px;
+    text-align: left;
+    width: 100%;
     color: #8d8d8d;
   }
-  .slick-dots li.slick-active button:before{
-    color: #6e6e6e;
-  }
-  .slick-prev:before, .slick-next:before{
-    color: ${({ theme }) => theme.textColor};
-  }
-  ${media.desktopUnder`
-    padding: 0px 10px;
+  ${media.pc`
+    text-align: center;
+  `}
+  ${media.desktop`
+    margin: 30px auto;
+    padding: 0 0 80px;
+    & h2{
+      font-size: 25px;
+      text-align: center;
+    }
   `}
   ${media.mobile`
-    padding: 0px;
-    .slick-prev:before, .slick-next:before{
-      display: none;
-    }
+    padding: 0px 10px;
   `}
 `
 
 const SlideInner = styled.div`
-  height: auto;
-  margin-top: 20px;
+     margin-top: 20px;
+     width: 100%;
+     & > div{
+       color: #fff;
+       height: 300px;
+     }
+     ${media.desktop`
+     margin-bottom: 50px;
+    `}
  `
 
 const SlideContents = styled.div`
@@ -134,23 +112,14 @@ const SlideContents = styled.div`
  `
 
 const Contents = styled.div`
-   height: 200px;
    display: flex;
    align-items: center;
    justify-content: center;
-   overflow: hidden;
-   background-color: ${({ theme }) => theme.bgColor};
    & a{
-     width: 100%;
-     height: 100%;
-     display: block;
-     position: relative;
-     & img{ 
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      width: 102%;
-      }
+    width: 100%;
+    height: 100%;
+    display: block;
+    & img{ width: 100%; }
    }
+
  `

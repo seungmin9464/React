@@ -1,26 +1,8 @@
-import Slider from "react-slick";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import "swiper/css";
 import React, { useEffect, useState } from 'react';
 import Movie from "../Movie";
 import styled from 'styled-components';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-
-const settings = {
-  dots: false,
-  infinite: true,
-  slidesToShow: 5,
-  slidesToScroll: 3,
-  arrows: false,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-      }
-    },
-  ]
-};
 
 const SliderDiv = ({ 
   filtered, 
@@ -30,7 +12,7 @@ const SliderDiv = ({
   return (
     <SlideWrap>
       <SlideTitle>트렌드 콘텐츠</SlideTitle>
-      <Slider {...settings}>
+      <Swiper>
         {
           trand.map((movie) => {
             return <Movie
@@ -39,10 +21,10 @@ const SliderDiv = ({
             onClick={ () => {} }/>
           })
         }
-      </Slider>
+      </Swiper>
 
       <SlideTitle>지금 뜨는 콘텐츠</SlideTitle>
-      <Slider {...settings}>
+      <Swiper>
         {
           filtered.map((movie) => {
             return <Movie
@@ -51,10 +33,10 @@ const SliderDiv = ({
             onClick={ () => {} }/>
           })
         }
-      </Slider>
+      </Swiper>
 
       <SlideTitle>현재 가장 인기있는</SlideTitle>
-      <Slider {...settings}>
+      <Swiper>
         {
           rated.map((movie) => {
             return <Movie
@@ -62,10 +44,10 @@ const SliderDiv = ({
               movie={ movie }/>
           })
         }
-      </Slider>
+      </Swiper>
 
       <SlideTitle>개봉 예정 중인</SlideTitle>
-      <Slider {...settings}>
+      <Swiper>
         {
           comming.map((movie) => {
             return <Movie
@@ -73,7 +55,7 @@ const SliderDiv = ({
               movie={ movie }/>
           })
         }
-      </Slider>
+      </Swiper>
     </SlideWrap>
   );
 };
