@@ -15,7 +15,7 @@ const App = (props) => {
           <Route path='/' element={<Main/>}/>
 
           <Route path='/movie' element={<Net/>}>
-            <Route path=":movieId" component={<MovieDetail/>} />
+            <Route path="/movie/movieId" component={<MovieDetail/>} />
           </Route>
           
         </Routes>

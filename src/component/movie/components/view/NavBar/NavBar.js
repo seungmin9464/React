@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import { Drawer, Button } from 'antd';
 import LeftMenu from './Sections/LeftMenu';
+import {media} from '../../../../../style/media_query'
 
 function NavBar() {
   const [visible, setVisible] = useState(false)
@@ -49,15 +50,21 @@ export default NavBar
 const Nav = styled.header`
   display: flex;
   width: 100%;
-  height: 60px;
+  height: 80px;
   align-items: center;
   padding: 0 30px;
   background-color: #000;
+  ${media.tablet`
+    height: 60px;  
+  `}
 `
 
 const Logo = styled.div`
   color: #e50914;
   font-weight: 900;
-  font-size: 24px;
+  font-size: 30px;
   letter-spacing: -2px;
+  ${media.tablet`
+    font-size: 20px;  
+  `}
 `

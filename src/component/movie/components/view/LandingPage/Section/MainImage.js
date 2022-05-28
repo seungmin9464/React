@@ -10,9 +10,9 @@ const MainImage = (props) => {
                     position: 'relative'
                 }}>
             <div>
-                <div style={{ position: 'absolute', maxWidth: '500px', bottom: '2rem', marginLeft: '2rem' }}>
-                    <H2 style={{ color: 'white' }}> {props.title} </H2>
-                </div>
+                <BgWrapTitle>
+                    <H2>{ props.title }</H2>
+                </BgWrapTitle>
             </div>
         </BgWrap>
       </>
@@ -23,9 +23,10 @@ export default MainImage;
 
 const BgWrap = styled.div`
     height: 600px;
-    background-position: top center;
-    background-repeat: no-repeat;
-    width: '100%';
+    background-position: top center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    width: 100%;
     overflow: hidden;
     ${media.desktop`
         height: 400px;
@@ -41,10 +42,18 @@ const BgWrap = styled.div`
     `}
 `
 
+const BgWrapTitle = styled.div`
+    position: absolute;
+    max-width: 100%;
+    bottom: 2rem;
+    margin-left: 2rem;
+`
+
 const H2 = styled.h2`
     font-size: 30px;
     font-weight: 900;
     margin: 50px;
+    color: #fff;
     ${media.tablet`
         font-size: 20px;
         margin: 20px;
