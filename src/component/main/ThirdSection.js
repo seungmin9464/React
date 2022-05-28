@@ -26,9 +26,7 @@ const ThirdSection = () => {
             <ContentsText>
 
               <div>
-                <Title>
-                  영화 오픈 DATA를 받아 <br/>영화와 드라마 TV와 관련된 정보들을 볼 수 있도록 제작 하였습니다.
-                </Title>
+                <Title>홈페이지 버튼을 눌러주세요. <br/>준비중입니다.</Title>
               </div>
 
               <LinkMove>
@@ -90,6 +88,7 @@ const ContentsWrap = styled.div`
 `
 
 const H1 = styled.h1`
+  color: ${({ theme }) => theme.textColor};
   font-family: pretendard;
   font-weight: 500;
   font-size: 40px;
@@ -133,11 +132,16 @@ const ContentsText = styled.div`
   flex-direction: column;
   justify-content: space-between;
   & div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     padding: 0 30px;
   }
 `
 
 const Title = styled.h3`
+  color: #858585;
   font-size: 24px;
   font-weight: 500;
   width: 100%;
