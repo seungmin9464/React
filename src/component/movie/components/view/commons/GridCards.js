@@ -47,7 +47,7 @@ const CardInner = styled.div`
     `}
     ${media.mobile`
         & img{
-            height: 250px;
+            height: 200px;
         }
     `}
 `

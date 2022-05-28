@@ -114,6 +114,9 @@ const InnerWrap = styled.div`
   ${media.desktop`
     padding: 0 40px;
   `}
+  ${media.medium`
+    padding: 0 20px;
+  `}
 `
 
 const MainDiv = styled.div`
@@ -168,6 +171,7 @@ margin-bottom: 20px;
   `}
   ${media.mobile`
     width: inherit%;
-    height: 60px;
+    height: 30px;
+    font-size: 16px;
   `}
 `
