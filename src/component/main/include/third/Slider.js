@@ -1,22 +1,22 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
-import './style.css'
 import styled from 'styled-components';
 import { media } from '../../../../style/media_query';
 import { useTheme } from '../../../../context/themeProvider';
 
 const slideData = [
-  { id: 0, img: './image/pub/img-pub1.png', link: 'https://www.kiwontech.com/' },
-  { id: 1, img: './image/pub/img-pub2.png', link: 'https://secuecloud.co.kr/' },
-  { id: 2, img: './image/pub/img-pub3.png', link: 'https://secu-email.com/' },
-  { id: 3, img: './image/pub/img-pub4.png', link: 'http://withus.cc/' },
-  { id: 4, img: './image/pub/img-pub5.png', link: 'https://kissu.co.kr/' },
-  { id: 5, img: './image/pub/img-pub6.png', link: 'http://www.kpta.co.kr/science' },
-  { id: 6, img: './image/pub/img-pub7.png', link: 'http://lbtraders.co.kr/main' },
-  { id: 7, img: './image/pub/img-pub8.png', link: 'http://www.leehyobio.com/main' },
+  { id: 1, img: './image/pub/img-pub1.png', link: 'https://www.kiwontech.com/' },
+  { id: 2, img: './image/pub/img-pub2.png', link: 'https://secuecloud.co.kr/' },
+  { id: 3, img: './image/pub/img-pub3.png', link: 'https://secu-email.com/' },
+  { id: 4, img: './image/pub/img-pub4.png', link: 'http://withus.cc/' },
+  { id: 5, img: './image/pub/img-pub5.png', link: 'https://kissu.co.kr/' },
+  { id: 6, img: './image/pub/img-pub6.png', link: 'http://www.kpta.co.kr/science' },
+  { id: 7, img: './image/pub/img-pub7.png', link: 'http://lbtraders.co.kr/main' },
+  { id: 8, img: './image/pub/img-pub8.png', link: 'http://www.leehyobio.com/main' },
+  { id: 9, img: './image/pub/img-pub9.png', link: 'http://asiplug.com/ko/main' },
 ]
 
-const SliderDiv = () => {
+const SliderDiv = ( s ) => {
   return (
     <SlideWrap>
       <h2>홈페이지 퍼블리싱</h2>
@@ -43,7 +43,7 @@ const SliderDiv = () => {
             slideData.map((item) =>
               <SwiperSlide>
                 <SlideContents>
-                  <Contents  key={item.id}>
+                  <Contents key={item.id}>
                     <a href={item.link} target='_blank'>
                       <img src={item.img} />
                     </a>

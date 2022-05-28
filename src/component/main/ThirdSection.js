@@ -26,7 +26,9 @@ const ThirdSection = () => {
             <ContentsText>
 
               <div>
-                <Title>홈페이지 버튼을 눌러주세요. <br/>준비중입니다.</Title>
+                <Title>
+                  영화 오픈 DATA를 받아 <br/>영화와 드라마 TV와 관련된 정보들을 볼 수 있도록 제작 하였습니다.
+                </Title>
               </div>
 
               <LinkMove>
