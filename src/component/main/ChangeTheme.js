@@ -20,6 +20,7 @@ export const lightTheme = {
     border: '1px solid #333',
     leftMenu: '#fff',
     contentsBg: '#f1f1f1',
+
     oppBg: '#1a1a1a',
     oppColor: '#fff',
     oppBorder:'1px solid #fff',

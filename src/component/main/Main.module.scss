@@ -1,0 +1,46 @@
+body{
+    &::-webkit-scrollbar {width: 6px;}
+    &::-webkit-scrollbar-thumb {background-color: #979797; border-radius: 5px;}
+    &::-webkit-scrollbar-track {background-color: #ddd;}
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+@font-face {
+    font-family: pretendard;
+    font-weight: 300;
+    src: 
+        url('./font/Pretendard-Regular.otf') format('opentype'),
+        url('./font/Pretendard-Regular.woff') format('woff'),
+        url('./font/Pretendard-Regular.woff2') format('woff2'),
+        url('./font/Pretendard-Regular.ttf') format('ttf');
+  }
+  
+  @font-face {
+    font-family: pretendard;
+    font-weight: 400;
+    src: 
+        url('./font/Pretendard-Light.otf') format('opentype'),
+        url('./font/Pretendard-Light.woff') format('woff'),
+        url('./font/Pretendard-Light.woff2') format('woff2'),
+        url('./font/Pretendard-Light.ttf') format('ttf');
+  }
+  
+  @font-face {
+    font-family: pretendard;
+    font-weight: 500;
+    src: 
+        url('./font/Pretendard-Medium.otf') format('opentype'),
+        url('./font/Pretendard-Medium.woff') format('woff'),
+        url('./font/Pretendard-Medium.woff2') format('woff2'),
+        url('./font/Pretendard-Medium.ttf') format('ttf');
+  }
+  
+  @font-face {
+    font-family: pretendard;
+    font-weight: 600;
+    src: 
+        url('./font/Pretendard-Bold.otf') format('opentype'),
+        url('./font/Pretendard-Bold.woff') format('woff'),
+        url('./font/Pretendard-Bold.woff2') format('woff2'),
+        url('./font/Pretendard-Bold.ttf') format('ttf');
+  }
