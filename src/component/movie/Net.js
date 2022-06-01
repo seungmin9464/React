@@ -80,7 +80,7 @@ export default Net;
 
 const NetWrap = styled.section`
     background-color: #000;
-    .sc-ezWOiH{
+    .sc-jIZahH{
         background-color: #171717;
         border-top: none;
         & a{ color: #a2a2a2; }

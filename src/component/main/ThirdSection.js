@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { media } from '../../style/media_query';
+import SliderDiv from './include/third/Slider';
 
 const linklist = [
   {
     id: 1,
-    link: '/netflex',
+    link: '/movie',
     name: '홈페이지',
   },
   {
@@ -16,8 +17,6 @@ const linklist = [
 ]
 
 const ThirdSection = () => {
-
-
   return (
     <ContentsWrap name='CONTENTS'>
       <div>
@@ -51,38 +50,8 @@ const ThirdSection = () => {
             </ContentsArea>
           </RightDiv>
         </ContentsInner>
-
-{/* 
-        <ContentsInner>
-          <LeftDiv>
-            <ContentsText>
-
-              <div>
-                <Title>제목2</Title>
-              </div>
-
-              <LinkMove>
-                {
-                  linklist.map(item =>
-                    <LinkList
-                      key={item.id}>
-                      <Link to={item.link}>
-                        {item.name}
-                      </Link>
-                    </LinkList>)
-                }
-              </LinkMove>
-            </ContentsText>
-          </LeftDiv>
-
-          <RightDiv>
-            <ContentsArea>
-              <Contents1 />
-              <Contents2 />
-            </ContentsArea>
-          </RightDiv>
-        </ContentsInner> */}
       </div>
+      <SliderDiv/>
     </ContentsWrap>
   );
 };
@@ -106,9 +75,20 @@ const ContentsWrap = styled.div`
     width: 100%;
     margin: 0 auto;
   }
+  ${media.desktop`
+    & > div{
+      width: inherit;
+      margin: inherit;
+      padding: 0;
+      &:nth-child(2){
+        margin-top: 100px;
+      }
+    }
+  `}
 `
 
 const H1 = styled.h1`
+  color: ${({ theme }) => theme.textColor};
   font-family: pretendard;
   font-weight: 500;
   font-size: 40px;
@@ -125,7 +105,6 @@ const ContentsInner = styled.div`
   width: 100%;
   height: 60vh;
   display: flex;
-  margin: 50px 0;
   align-items: center;
   ${media.desktop`
     flex-direction: column;
@@ -153,15 +132,24 @@ const ContentsText = styled.div`
   flex-direction: column;
   justify-content: space-between;
   & div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     padding: 0 30px;
   }
 `
 
 const Title = styled.h3`
+  color: #858585;
   font-size: 24px;
   font-weight: 500;
   width: 100%;
   text-align: center;
+  ${media.tablet`
+    font-size: 18px;
+    margin-top: 20px;
+  `}
 `
 
 const LinkMove = styled.ul`
@@ -178,12 +166,12 @@ const LinkList = styled.ul`
     text-align: center;
     display: inline-block;
     background-color: ${({ theme }) => theme.footer};
+    border: ${({ theme }) => theme.borderColor};
     font-family: pretendard;
     transition: ease .3s;
     border-radius: 50px;
     font-weight: 600;
     padding: 7px 0;
-    border: ${({ theme }) => theme.borderColor};
     &:hover{
       background-color: ${({ theme }) => theme.navPoint};
     }
@@ -197,6 +185,9 @@ const RightDiv = styled.div`
   ${media.tablet`
     width: 100%;
     height: 150%;
+  `}
+  ${media.medium`
+    height: 100%;
   `}
   ${media.mobile`
     height: 100%;
@@ -214,7 +205,11 @@ const ContentsArea = styled.div`
   `}
   ${media.tablet`
     padding-top: 0px;
-    height: 150%;
+    height: 100%;
+  `}
+  ${media.medium`
+    padding-top: 0px;
+    height: 100%;
   `}
   ${media.mobile`
     height: 100%;
@@ -236,9 +231,9 @@ const Contents1 = styled.div`
   `}
   ${media.tablet`
     width: 100%;
-    height: 100%;
+    height: 70%;
     right: -20px;
-    bottom: 10px;
+    bottom: 40px;
   `}
   ${media.mobile`
     width: 90%;
@@ -264,9 +259,9 @@ const Contents2 = styled.div`
   `}
   ${media.tablet`
     width: 100%;
-    height: 100%;
+    height: 70%;
     left: -20px;
-    top: 10px;
+    top: 40px;
   `}
   ${media.mobile`
     width: 90%;

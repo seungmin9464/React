@@ -52,12 +52,6 @@ const FooterDiv = styled.div`
     padding: 0px 20px;
     margin: 0 auto;
   }
-  ${media.tablet`
-    margin-top: 100px;
-  `}
-  ${media.mobile`
-    margin-top: 0px;
-  `}
 `
 
 const FooterLogo = styled.p`

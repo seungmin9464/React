@@ -7,15 +7,6 @@
 );
 
 /* CSS RESET */
-*, ::after, ::before {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
 
 article, aside, details, figcaption, figure, footer, main, menu, nav, section, summary {
   display: block;

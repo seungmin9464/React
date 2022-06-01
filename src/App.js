@@ -5,14 +5,14 @@ import Net from './component/movie/Net';
 import ThemeProvider from './context/themeProvider';
 import { GlobalStyle } from './theme/GlobalStyles';
 
-const App = () => {
+const App = (props) => {
   return (
     <BrowserRouter>
       <ThemeProvider>
         <GlobalStyle/>
         <Routes>
           <Route path='/' element={<Main/>}/>
-          <Route path='/netflex' element={<Net/>}/>
+          <Route path='/movie' element={<Net/>}></Route>
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
