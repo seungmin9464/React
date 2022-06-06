@@ -1,7 +1,4 @@
 const View = () => {
-
-    console.log(123)
-
     return (
         <div>
             

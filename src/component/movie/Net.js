@@ -106,6 +106,9 @@ const MainBanner = styled.div`
     ${media.medium`
         height: 40vh;
     `}
+    ${media.mobile`
+        height: 25vh;
+    `}
 `
 
 const PopilarMovies = styled.div`

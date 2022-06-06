@@ -9,7 +9,6 @@ const MainImage = (props) => {
                 <img src={ props.image }/>
                 <H2>{ props.title }</H2>
             </MainImageWrap>
-
         </BgWrap>
       </>
   )

@@ -1,9 +1,8 @@
 import Slider from "react-slick";
-import React, { useEffect, useState } from 'react';
 import "slick-carousel/slick/slick.css"; import "slick-carousel/slick/slick-theme.css";
 import Movie from "../Movie";
 import styled from 'styled-components';
-import {media} from '../../../style/media_query'
+import { media } from '../../../style/media_query'
 
 const settings = {
   dots: false,
@@ -30,11 +29,14 @@ const settings = {
   ]
 };
 
-const SliderDiv = ({ 
-  filtered, 
+const SliderDiv = ({
+  filtered,
   rated,
   comming,
   trand }) => {
+
+
+
   return (
     <SlideWrap>
       <SlideTitle>트렌드 콘텐츠</SlideTitle>
@@ -42,9 +44,9 @@ const SliderDiv = ({
         {
           trand.map((movie) => {
             return <Movie
-            key={ movie.id }
-            movie={ movie }
-            onClick={ () => {} }/>
+              key={movie.id}
+              trand={ trand }
+              movie={movie} />
           })
         }
       </Slider>
@@ -54,9 +56,8 @@ const SliderDiv = ({
         {
           filtered.map((movie) => {
             return <Movie
-            key={ movie.id }
-            movie={ movie }
-            onClick={ () => {} }/>
+              key={movie.id}
+              movie={movie} />
           })
         }
       </Slider>
@@ -66,8 +67,8 @@ const SliderDiv = ({
         {
           rated.map((movie) => {
             return <Movie
-              key={ movie.id }
-              movie={ movie }/>
+              key={movie.id}
+              movie={movie} />
           })
         }
       </Slider>
@@ -77,8 +78,8 @@ const SliderDiv = ({
         {
           comming.map((movie) => {
             return <Movie
-              key={ movie.id }
-              movie={ movie }/>
+              key={movie.id}
+              movie={movie} />
           })
         }
       </Slider>
