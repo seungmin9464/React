@@ -1,30 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { media } from '../../style/media_query'
-import { useState, useEffect } from 'react';
-import Detail from './Detail';
-import { API_URL, API_KEY } from './Config';
 
 const Movie = ({ movie }) => {
-
-
-  const [detailMovie, setDetailMovie] = useState([])
-
-  const popular = async () => {
-    const viewMovie = await fetch(`${API_URL}movie/${movie.id}?api_key=${API_KEY}&language=ko`)
-
-    const detailMovie = await viewMovie.json()
-
-    setDetailMovie(detailMovie.results)
-  }
-
-  useEffect(() => {
-    popular()
-  })
-
   return (
     <Card>
-      <Link to={`/movie/${movie.id}`} detailMovie={ detailMovie }>
+      <Link to={`/movie/${movie.id}`}>
         <img src={"http://image.tmdb.org/t/p/w500" + movie.poster_path} alt='' />
       </Link>
     </Card>

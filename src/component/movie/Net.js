@@ -6,6 +6,7 @@ import SliderDiv from "./include/Slider";
 import { media } from "../../style/media_query";
 import { API_KEY, API_URL } from "./Config";
 import Footer from "../main/include/Footer";
+import axios from 'axios';
 
 const Net = () => {
     const [trand, setTrand] = useState([])
@@ -16,33 +17,24 @@ const Net = () => {
     const [mainBanner, setMainBanner] = useState([])
     const [activeGenre, setActiveGenre] = useState(0)
 
-    const fetchPopular = async () => {
-        const tranding = await fetch(`${API_URL}trending/all/day?api_key=${API_KEY}&language=ko`)
-
-        const data = await fetch(`${API_URL}movie/popular?api_key=${API_KEY}&language=ko`)
-
-        const best = await fetch(`${API_URL}movie/top_rated?api_key=${API_KEY}&language=ko`)
-
-        const comm = await fetch(`${API_URL}movie/upcoming?api_key=${API_KEY}&language=ko`)
-
-        const banner = await fetch(`${API_URL}trending/all/day?api_key=${API_KEY}&language=ko`)
-
-        const trand = await tranding.json()
-        const movies = await data.json()
-        const rated = await best.json()
-        const comming = await comm.json()
-        const mainBanner = await banner.json()
-
-        setPopular(movies.results)
-        setFiltered(movies.results)
-        setRated(rated.results)
-        setComming(comming.results)
-        setMainBanner(mainBanner.results)
-        setTrand(trand.results)
-    }
-
     useEffect(() => {
-        fetchPopular()
+        axios.get(`${API_URL}trending/all/day?api_key=${API_KEY}&language=ko`)
+            .then((res) => setTrand(res.data.results))
+
+        axios.get(`${API_URL}movie/popular?api_key=${API_KEY}&language=ko`)
+            .then((res) => {
+                setPopular(res.data.results)
+                setFiltered(res.data.results)
+            })
+
+        axios.get(`${API_URL}trending/all/day?api_key=${API_KEY}&language=ko`)
+            .then((res) => setRated(res.data.results))
+
+        axios.get(`${API_URL}movie/upcoming?api_key=${API_KEY}&language=ko`)
+            .then((res) => setComming(res.data.results))
+
+        axios.get(`${API_URL}trending/all/day?api_key=${API_KEY}&language=ko`)
+            .then((res) => setMainBanner(res.data.results))
     }, [])
 
     return (
@@ -71,7 +63,7 @@ const Net = () => {
                     comming={comming}
                     trand={trand} />
             </PopilarMovies>
-            <Footer/>
+            <Footer />
         </NetWrap>
     );
 };

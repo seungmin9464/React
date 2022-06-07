@@ -35,18 +35,15 @@ const SliderDiv = ({
   comming,
   trand }) => {
 
-
-
   return (
     <SlideWrap>
       <SlideTitle>트렌드 콘텐츠</SlideTitle>
       <Slider {...settings}>
         {
-          trand.map((movie) => {
+          trand && trand.map((movie) => {
             return <Movie
-              key={movie.id}
-              trand={ trand }
-              movie={movie} />
+              key={ movie.id }
+              movie={ movie } />
           })
         }
       </Slider>
@@ -54,10 +51,10 @@ const SliderDiv = ({
       <SlideTitle>지금 뜨는 콘텐츠</SlideTitle>
       <Slider {...settings}>
         {
-          filtered.map((movie) => {
+          filtered && filtered.map((movie) => {
             return <Movie
-              key={movie.id}
-              movie={movie} />
+              key={ movie.id }
+              movie={ movie } />
           })
         }
       </Slider>
@@ -65,10 +62,10 @@ const SliderDiv = ({
       <SlideTitle>현재 가장 인기있는</SlideTitle>
       <Slider {...settings}>
         {
-          rated.map((movie) => {
+          rated && rated.map((movie) => {
             return <Movie
-              key={movie.id}
-              movie={movie} />
+              key={ movie.id }
+              movie={ movie } />
           })
         }
       </Slider>
@@ -76,10 +73,10 @@ const SliderDiv = ({
       <SlideTitle>개봉 예정 중인</SlideTitle>
       <Slider {...settings}>
         {
-          comming.map((movie) => {
+          comming && comming.map((movie) => {
             return <Movie
-              key={movie.id}
-              movie={movie} />
+              key={ movie.id }
+              movie={ movie } />
           })
         }
       </Slider>
