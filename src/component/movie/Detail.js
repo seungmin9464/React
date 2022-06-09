@@ -20,10 +20,26 @@ const Detail = () => {
   return (
     <DetailWRap>
       <Bg>
-        <img src={"http://image.tmdb.org/t/p/original" + detail?.backdrop_path} alt={detail?.title}/>
-        <H3>{detail?.title}</H3>
-        <H3>{detail?.name}</H3>
+        <Gradiant></Gradiant>
+        <img src={"http://image.tmdb.org/t/p/w1920_and_h600_multi_faces" + detail?.backdrop_path} alt={ detail?.name }/>
+        <MovieContents>
+          <Card>
+            <img src={ "http://image.tmdb.org/t/p/w500" + detail?.poster_path }/>
+          </Card>
+
+          <MovieTextWrap>
+            <H1>{ detail?.title }</H1>
+            <H1>{ detail?.name }</H1>
+            <H3>{ detail?.original_title }</H3>
+            <H3>{ detail?.original_title }</H3>
+          </MovieTextWrap>
+        </MovieContents>
       </Bg>
+
+
+
+        {/* <H3>{detail?.title}</H3> */}
+        {/* <H3>{detail?.name}</H3> */}
     </DetailWRap>
   );
 };
@@ -36,7 +52,7 @@ const DetailWRap = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  height: 100vh;
+  height: auto;
   background-color: #000;
 `
 
@@ -55,12 +71,62 @@ const Bg = styled.div`
   }
 `
 
-const H3 = styled.h3`
-  font-size: 30px;
-  font-weight: 900;
-  text-align: center;
-  color: #fff;
+const Gradiant = styled.div`
+  width: 100%;
+  height: 100%;
   position: absolute;
-  bottom: 0;
-  margin: 10px;
+  background-image: linear-gradient(to left, transparent , rgba(0, 0, 0, 1));
 `
+
+const MovieContents = styled.div`
+    min-width: 1200px;
+    position: absolute;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    display: flex;
+`
+
+const Card = styled.div`
+  width: 250px;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+`
+
+const MovieTextWrap = styled.div`
+  width: calc(100% - 250px);
+  height: 100%;
+  display: flex;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  flex-direction: column;
+`
+
+const H1 = styled.h1`
+  font-size: 40px;
+  font-weight: 900;
+  color: #fff;
+`
+
+const H3 = styled.h3`
+  font-size: 20px;
+  font-weight: 900;
+  color: #989898;
+`
+
+const BtnWrap = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  & li{
+
+  }
+`
+
+
+
+
