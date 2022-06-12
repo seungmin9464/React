@@ -72,6 +72,7 @@ export default Detail;
 
 const Wrap = styled.div`
   background-color: #000;
+  overflow: hidden;
 `
 
 const Bg = styled.div`
@@ -108,7 +109,6 @@ const BgWrap = styled.div`
   transform: translate(-50%,-50%);
   width: 100%;
   height: 100%;
-  & img{}
   ${media.desktop`
     height: 850px;
     & img{
@@ -121,6 +121,9 @@ const BgWrap = styled.div`
     height: 600px;
     & img{
       height: 600px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
   `}
 `
@@ -129,9 +132,13 @@ const Gradiant = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
+  z-index: 99;
   background-image: linear-gradient(to left, transparent , rgba(0, 0, 0, 1));
   ${media.tablet`
     height: 850px;
+  `}
+  ${media.mobile`
+    background-image: linear-gradient(to bottom,transparent ,rgba(0,0,0,1));
   `}
 `
 
@@ -249,7 +256,6 @@ const MovieWrap = styled.div`
 `
 const MovieKeyword = styled.ul`
   display: flex;
-  
   & li{
     background-color: #666;
     padding: 5px 10px;
