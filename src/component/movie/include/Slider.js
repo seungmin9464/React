@@ -89,7 +89,7 @@ const SliderDiv = ({
         <SlideInner>
           <Swiper
             slidesPerView={4}
-            spaceBetween={10}
+            spaceBetween={0}
             scrollbar={{ draggable: true }}
             pagination={{ clickable: true }}
             loop={true}
