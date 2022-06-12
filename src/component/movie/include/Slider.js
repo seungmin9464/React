@@ -174,6 +174,9 @@ const SlideInner = styled.div`
 const SlideContents = styled.div`
   padding: 0 10px;
   box-sizing: border-box;
+  ${media.mobile`
+    padding: 0;
+  `}
 `
 
 const Contents = styled.div`

@@ -33,8 +33,11 @@ const Card = styled.div`
     border-radius: 1rem;
     padding: 5px;
     box-sizing: border-box;
-    ${media.mobile`
-      height: 180px;
-    `}
   }
+  ${media.mobile`
+    & img{
+      padding: 0;
+      height: 180px;
+    }        
+  `}
 `
