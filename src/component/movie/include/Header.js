@@ -26,7 +26,7 @@ const Header = ({
           <Logo>
             BEAKFLIX
           </Logo>
-          <BtnWrap>
+          {/* <BtnWrap>
             <button
               onClick={() => setActiveGenre(0)}>All</button>
             <button
@@ -35,12 +35,12 @@ const Header = ({
               onClick={() => setActiveGenre(18)}>Movie</button>
             <button
               onClick={() => setActiveGenre(18)}>Trend</button>
-          </BtnWrap>
+          </BtnWrap> */}
         </LeftDiv>
 
-        <RightDiv>
+        {/* <RightDiv>
           menu
-        </RightDiv>
+        </RightDiv> */}
       </FilterContainer>
     </HeaderDiv>
   );
@@ -72,9 +72,10 @@ const LeftDiv = styled.div`
   align-items: flex-end;
 `
 const Logo = styled.div`
-  color: #e50914;
+  color: #00d090;
   font-weight: 900;
   font-size: 30px;
+  letter-spacing: -2px;
 `
 const BtnWrap = styled.div`
   margin-left: 10px;

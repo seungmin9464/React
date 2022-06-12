@@ -9,12 +9,13 @@ import Footer from "../main/include/Footer";
 import axios from 'axios';
 
 const Net = () => {
-    const [trand, setTrand] = useState([])
-    const [popular, setPopular] = useState([])
-    const [filtered, setFiltered] = useState([])
-    const [rated, setRated] = useState([])
+    const [trand, setTrand] = useState([])                  //트렌드 영화 목록
+    const [popular, setPopular] = useState([])              //인기인는 영화 목록
     const [comming, setComming] = useState([])
+    
     const [mainBanner, setMainBanner] = useState([])
+    const [filtered, setFiltered] = useState([])
+
     const [activeGenre, setActiveGenre] = useState(0)
 
     useEffect(() => {
@@ -24,11 +25,7 @@ const Net = () => {
         axios.get(`${API_URL}movie/popular?api_key=${API_KEY}&language=ko`)
             .then((res) => {
                 setPopular(res.data.results)
-                setFiltered(res.data.results)
             })
-
-        axios.get(`${API_URL}trending/all/day?api_key=${API_KEY}&language=ko`)
-            .then((res) => setRated(res.data.results))
 
         axios.get(`${API_URL}movie/upcoming?api_key=${API_KEY}&language=ko`)
             .then((res) => setComming(res.data.results))
@@ -58,10 +55,9 @@ const Net = () => {
 
             <PopilarMovies>
                 <SliderDiv
-                    filtered={filtered}
-                    rated={rated}
-                    comming={comming}
-                    trand={trand} />
+                    trand={ trand }
+                    popular={ popular }
+                    comming={ comming } />
             </PopilarMovies>
             <Footer />
         </NetWrap>
