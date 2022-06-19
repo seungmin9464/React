@@ -21,7 +21,7 @@ const SliderDiv = ({
         <SlideInner>
           <Swiper
             slidesPerView={3}
-            spaceBetween={10}
+            spaceBetween={2}
             scrollbar={{ draggable: true }}
             pagination={{ clickable: true }}
             loop={true}
@@ -55,7 +55,7 @@ const SliderDiv = ({
         <SlideInner>
           <Swiper
             slidesPerView={3}
-            spaceBetween={0}
+            spaceBetween={2}
             scrollbar={{ draggable: true }}
             pagination={{ clickable: true }}
             loop={true}
@@ -84,12 +84,12 @@ const SliderDiv = ({
       </SlideWrap>
 
       <SlideWrap>
-        <h2>인기 영화</h2>
+        <h2>개봉 예정 영화</h2>
 
         <SlideInner>
           <Swiper
             slidesPerView={3}
-            spaceBetween={0}
+            spaceBetween={2}
             scrollbar={{ draggable: true }}
             pagination={{ clickable: true }}
             loop={true}
@@ -190,4 +190,7 @@ const Contents = styled.div`
     overflow: hidden;
     & img{ width: 100%; }
    }
+   ${media.mobile`
+    padding: 0 5px;
+  `}
  `
