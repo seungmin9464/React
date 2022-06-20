@@ -9,7 +9,7 @@ const Detail = () => {
 
   let { id } = useParams()
   const [detail, setDetail] = useState()
-
+  const [actor, setActor] = useState()
 
   useEffect(() => {
     axios.get(`${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`)
@@ -17,6 +17,12 @@ const Detail = () => {
 
     axios.get(`${API_URL}tv/${id}?api_key=${API_KEY}&language=ko`)
       .then((res) => setDetail(res.data))
+
+    axios.get(`${API_URL}tv/${id}?api_key=${API_KEY}&language=ko`)
+      .then((res) => setDetail(res.data))
+
+    axios.get(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=KO`)
+      .then((res) => setActor(res.data))
   }, [])
 
   return (
@@ -61,7 +67,15 @@ const Detail = () => {
       <div>
         <Contents>
           {/* <p>출연진</p> */}
-
+          
+          <ActorDiv>
+            {
+              actor?.cast.map((item) => <li key={item.cast_id}>
+                <img src={"http://image.tmdb.org/t/p/original" + item.profile_path}/>
+                <p>{item.name}</p>
+              </li>)
+            }
+          </ActorDiv>
         </Contents>
       </div>
     </Wrap>
@@ -272,4 +286,24 @@ const Contents = styled.div`
   margin: 0 auto;
   height: 100vh;
   padding: 50px 0;
+`
+
+const ActorDiv = styled.div`
+  width: 1200px;
+  display: flex;
+  margin: 0 auto;
+  overflow: auto;
+  & li{
+    background-color: #fff;
+    height: 250px;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    margin: 0 10px;
+  }
+  & img{
+    height: 220px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
 `
