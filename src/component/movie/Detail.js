@@ -303,7 +303,7 @@ const Contents = styled.div`
   height: 100vh;
   padding: 50px 0px 0px;
   ${media.desktop`
-    padding: 0px 30px;
+    padding: 20px 0px 30px;
   `}
 `
 
@@ -359,13 +359,13 @@ const ActorDiv = styled.div`
     }
   }
   & img{
-    height: auto;
+    height: 225px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
   }
   & p{
     padding: 0 10px;
-    height: calc(100% - 200px);
+    height: calc(100% - 225px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -377,31 +377,25 @@ const ActorDiv = styled.div`
 
   ${media.desktop`
     width: inherit;
-    & li{
-      min-width: 130px;
-    }
-    & p{
-      height: calc(100% - 130px);
-    }
+    & li{min-width: 130px;}
+    & img{height: 180px}
+    & p{height: calc(100% - 180px);}
   `}
 
-  ${media.desktop`
-  & li{
-      min-width: 120px;
-    }
+  ${media.medium`
+    & li{min-width: 110px;}
+    & img{height: 165px}
     & p{
+      height: calc(100% - 165px);
       font-size: 14px;
-      padding: 13px 0;
+      padding: 0;
     }
   `}
 
   ${media.mobile`
-  & li{
-      min-width: 100px;
-    }
-    & p{
-      padding: 5px 0;
-    }
+    & li{min-width: 100px;}
+    & img{height: 157px}
+    & p{height: calc(100% - 157px)}
   `}
 `
 
