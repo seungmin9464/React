@@ -301,7 +301,10 @@ const Contents = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   height: 100vh;
-  padding: 50px 0;
+  padding: 50px 0px 0px;
+  ${media.desktop`
+    padding: 0px 30px;
+  `}
 `
 
 const ActorDiv = styled.div`
@@ -354,10 +357,9 @@ const ActorDiv = styled.div`
         background-color: #ebebeb;
       }
     }
-
   }
   & img{
-    height: 200px;
+    height: auto;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
   }
@@ -375,7 +377,31 @@ const ActorDiv = styled.div`
 
   ${media.desktop`
     width: inherit;
-    padding: 0 30px 10px;
+    & li{
+      min-width: 130px;
+    }
+    & p{
+      height: calc(100% - 130px);
+    }
+  `}
+
+  ${media.desktop`
+  & li{
+      min-width: 120px;
+    }
+    & p{
+      font-size: 14px;
+      padding: 13px 0;
+    }
+  `}
+
+  ${media.mobile`
+  & li{
+      min-width: 100px;
+    }
+    & p{
+      padding: 5px 0;
+    }
   `}
 `
 

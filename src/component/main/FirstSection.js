@@ -50,7 +50,7 @@ const MainTyping = styled.div`
   `}
 `
 
-const Typing = styled.p`
+const Typing = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

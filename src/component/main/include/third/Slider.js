@@ -40,9 +40,9 @@ const SliderDiv = () => {
         >
           {
             slideData.map((item) =>
-              <SwiperSlide>
+              <SwiperSlide key={item.id}>
                 <SlideContents>
-                  <Contents  key={item.id}>
+                  <Contents>
                     <a href={item.link} target='_blank'>
                       <img src={item.img} />
                     </a>

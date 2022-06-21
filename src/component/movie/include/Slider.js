@@ -36,9 +36,9 @@ const SliderDiv = ({
           >
             {
               trand.map((movie) =>
-                <SwiperSlide>
+                <SwiperSlide key={movie.id}>
                   <SlideContents>
-                    <Contents key={movie.id}>
+                    <Contents>
                       <Movie movie={movie} />
                     </Contents>
                   </SlideContents>
@@ -70,9 +70,9 @@ const SliderDiv = ({
           >
             {
               popular.map((movie) =>
-                <SwiperSlide>
+                <SwiperSlide key={movie.id}>
                   <SlideContents>
-                    <Contents key={movie.id}>
+                    <Contents>
                       <Movie movie={movie} />
                     </Contents>
                   </SlideContents>
@@ -104,9 +104,9 @@ const SliderDiv = ({
           >
             {
               comming.map((movie) =>
-                <SwiperSlide>
+                <SwiperSlide key={movie.id}>
                   <SlideContents>
-                    <Contents key={movie.id}>
+                    <Contents>
                       <Movie movie={movie} />
                     </Contents>
                   </SlideContents>
