@@ -14,6 +14,7 @@ const Detail = () => {
   const [detailTv, setDetailTv] = useState()
 
   const [actorMovie, setActorMovie] = useState()
+  const [actorTv, setActorTv] = useState()
 
   useEffect(() => {
     console.log(media_type);
@@ -22,12 +23,15 @@ const Detail = () => {
       axios.get(`${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`)
            .then(res => setDetailMovie(res.data));
 
-      axios.get(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=KO`)
+      axios.get(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=ko`)
            .then((res) => setActorMovie(res.data));
 
     } else if (media_type === "tv") {
       axios.get(`${API_URL}tv/${id}?api_key=${API_KEY}&language=ko`)
          .then(res => setDetailTv(res.data));
+    
+      axios.get(`${API_URL}tv/${id}/credits?api_key=${API_KEY}&language=ko`)
+         .then((res) => setActorTv(res.data));
     }
   },[])
 
@@ -35,6 +39,8 @@ const Detail = () => {
     if(!detailMovie || !actorMovie ) return false
   } else if (media_type === "tv") {
     if(!detailTv ) return false
+  } else {
+    
   }
 
   return (
@@ -83,8 +89,13 @@ const Detail = () => {
               actorMovie?.cast.map((item) => <li key={item.cast_id}>
                 <img src={`http://image.tmdb.org/t/p/original${item.profile_path}`}/>
                 <p>{item.name}</p>
-              </li>
-              )
+              </li>)
+            }
+            {
+              actorTv?.cast.map((item) => <li key={item.id}>
+              <img src={`http://image.tmdb.org/t/p/original${item.profile_path}`}/>
+              <p>{item.name}</p>
+              </li>)
             }
             <More>
               <p>
