@@ -5,7 +5,7 @@ import { media } from '../../style/media_query'
 const Movie = ({ movie }) => {
   return (
     <Card>
-      <Link to={`/movie/${movie.id}`}>
+      <Link to={`/${movie.media_type}/${movie.id}`}>
         <img src={"http://image.tmdb.org/t/p/w500" + movie.poster_path} alt='' />
       </Link>
     </Card>

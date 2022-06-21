@@ -78,7 +78,7 @@ const NetWrap = styled.section`
 
 const MainBanner = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 500px;
     margin-bottom: 20px;
     padding-top: 80px;
     overflow: hidden;

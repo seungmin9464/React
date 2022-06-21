@@ -8,73 +8,89 @@ import { media } from '../../style/media_query';
 const Detail = () => {
 
   let { id } = useParams()
-  const [detail, setDetail] = useState()
-  const [actor, setActor] = useState()
+  let { media_type } = useParams()
+  
+  const [detailMovie, setDetailMovie] = useState()
+  const [detailTv, setDetailTv] = useState()
+
+  const [actorMovie, setActorMovie] = useState()
 
   useEffect(() => {
-    axios.get(`${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`)
-      .then((res) => setDetail(res.data))
+    console.log(media_type);
+    
+    if (media_type === "movie") {
+      axios.get(`${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`)
+           .then(res => setDetailMovie(res.data));
 
-    axios.get(`${API_URL}tv/${id}?api_key=${API_KEY}&language=ko`)
-      .then((res) => setDetail(res.data))
+      axios.get(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=KO`)
+           .then((res) => setActorMovie(res.data));
 
-    axios.get(`${API_URL}tv/${id}?api_key=${API_KEY}&language=ko`)
-      .then((res) => setDetail(res.data))
+    } else if (media_type === "tv") {
+      axios.get(`${API_URL}tv/${id}?api_key=${API_KEY}&language=ko`)
+         .then(res => setDetailTv(res.data));
+    }
+  },[])
 
-    axios.get(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=KO`)
-      .then((res) => setActor(res.data))
-  }, [])
+  if (media_type === "movie") {
+    if(!detailMovie || !actorMovie ) return false
+  } else if (media_type === "tv") {
+    if(!detailTv ) return false
+  }
 
   return (
     <Wrap>
       <Bg>
         <BgWrap>
           <Gradiant></Gradiant>
-          <img src={"http://image.tmdb.org/t/p/original" + detail?.backdrop_path} alt={detail?.title} />
+          <img src={`http://image.tmdb.org/t/p/original${detailMovie ? detailMovie.backdrop_path : detailTv.backdrop_path}`} alt={detailMovie ? detailMovie.title : detailTv.title} />
         </BgWrap>
 
 
         <MovieContents>
           <Card>
-            <img src={"http://image.tmdb.org/t/p/w500" + detail?.poster_path} />
+            <img src={`http://image.tmdb.org/t/p/w500${detailMovie ? detailMovie.poster_path : detailTv.poster_path}`} />
           </Card>
 
-          <MovieTextWrap>
-            {/*  제목 */}
-            <MovieTitle>
-              {/* 타이틀 */}
-              <H1>{detail?.title || detail?.name}</H1>
 
-              {/* 날짜 */}
-              <span>{detail?.release_date || detail?.last_air_date}</span>
+          <MovieTextWrap>
+            <MovieTitle>
+              <H1>{detailMovie ? detailMovie.title : detailTv.name }</H1>
+
+              <span>{detailMovie ? detailMovie.release_date : detailTv.last_air_date}</span>
             </MovieTitle>
-            <SubTile>{detail?.original_title || detail?.name}</SubTile>
+            <SubTile>{detailMovie ? detailMovie.original_title : detailTv.name}</SubTile>
 
             <MovieWrap>
               <MovieKeyword>
                 {
-                  detail?.genres.map((item) => <li key={item.id}>
+                  detailMovie?.genres.map((item) => <li key={item.id}>
                     {item.name}
                   </li>)
                 }
               </MovieKeyword>
-              <p>{detail?.overview}</p>
+              <p>{detailMovie ? detailMovie.overview : detailTv.overview}</p>
             </MovieWrap>
           </MovieTextWrap>
         </MovieContents>
+        
       </Bg>
 
       <div>
         <Contents>
-          {/* <p>출연진</p> */}
           
           <ActorDiv>
             {
-              actor?.cast.map((item) => <li key={item.cast_id}>
-                <img src={"http://image.tmdb.org/t/p/original" + item.profile_path}/>
+              actorMovie?.cast.map((item) => <li key={item.cast_id}>
+                <img src={`http://image.tmdb.org/t/p/original${item.profile_path}`}/>
                 <p>{item.name}</p>
-              </li>)
+              </li>
+              )
             }
+            <More>
+              <p>
+                <a href=''>더 보기</a>
+              </p>
+            </More>
           </ActorDiv>
         </Contents>
       </div>
@@ -292,18 +308,77 @@ const ActorDiv = styled.div`
   width: 1200px;
   display: flex;
   margin: 0 auto;
-  overflow: auto;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  ::-webkit-scrollbar-track {background-color: inherit;}
+  ::-webkit-scrollbar-thumb {
+    background-color: #979797;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
   & li{
     background-color: #fff;
-    height: 250px;
-    display: flex;
-    border-radius: 5px;
+    min-height: 100%;
+    min-width: 150px;
+    display: inline-flex;
+    border-radius: 8px;
     flex-direction: column;
     margin: 0 10px;
+    &:nth-child(n+11){
+      display: none;
+    }
+    &:nth-child(11){
+      display: none;
+    }
+    &:last-of-type{
+      display: list-item;
+      transition: ease .3s;
+      & p{
+        width: 100%;
+        height: 100%;
+        padding: 0;
+      }
+      & a{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      &:hover{
+        background-color: #ebebeb;
+      }
+    }
+
   }
   & img{
-    height: 220px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    height: 200px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
+  & p{
+    padding: 0 10px;
+    height: calc(100% - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-weight: 500;
+  }
+
+  ${media.desktop`
+    width: inherit;
+    padding: 0 30px 10px;
+  `}
+`
+
+const More = styled.li`
+  display: flex;
 `

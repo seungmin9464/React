@@ -17,9 +17,9 @@ const App = (props) => {
           {/* <Route path='/movie/*' element={<Net/>}/>
           <Route path="/movie/:id" element={<Detail/>}/> */}
 
-          <Route path='/movie'>
+          <Route path='/:media_type'>
             <Route index element={<Net/>}/>
-            <Route path='/movie/:id' element={<Detail/>}/>
+            <Route path='/:media_type/:id' element={<Detail/>}/>
           </Route>
 
         </Routes>
