@@ -16,32 +16,47 @@ const Detail = () => {
   const [actorMovie, setActorMovie] = useState()
   const [actorTv, setActorTv] = useState()
 
-  useEffect(() => {
-    console.log(media_type);
-    
-    if (media_type === "movie") {
-      axios.get(`${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`)
-           .then(res => setDetailMovie(res.data));
+  const [imageMovie, setImageMovie] = useState()
+  const [imageTv, setImageTv] = useState()
 
+
+  useEffect(() => {
+    if (media_type === "movie") {
+
+      axios.get(`${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`)
+              .then(res => setDetailMovie(res.data));
+      
       axios.get(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=ko`)
-           .then((res) => setActorMovie(res.data));
+              .then((res) => setActorMovie(res.data));
+      
+      axios.get(`${API_URL}movie/${id}/images?api_key=${API_KEY}&language=en`)
+              .then((res) => setImageMovie(res.data));
 
     } else if (media_type === "tv") {
+
       axios.get(`${API_URL}tv/${id}?api_key=${API_KEY}&language=ko`)
          .then(res => setDetailTv(res.data));
-    
+        
       axios.get(`${API_URL}tv/${id}/credits?api_key=${API_KEY}&language=ko`)
          .then((res) => setActorTv(res.data));
+ 
+      axios.get(`${API_URL}tv/${id}/images?api_key=${API_KEY}&language=en`)
+         .then((res) => setImageTv(res.data));   
+
     }
   },[])
 
   if (media_type === "movie") {
-    if(!detailMovie || !actorMovie ) return false
+    if(!detailMovie || !actorMovie || !imageMovie ) return false
   } else if (media_type === "tv") {
     if(!detailTv ) return false
-  } else {
-    
   }
+  
+  //  axios.get(`${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`)
+  //    .then((res) => setDetail(res.data))
+
+ 
+
 
   return (
     <Wrap>
@@ -89,13 +104,16 @@ const Detail = () => {
               actorMovie?.cast.map((item) => <li key={item.cast_id}>
                 <img src={`http://image.tmdb.org/t/p/original${item.profile_path}`}/>
                 <p>{item.name}</p>
-              </li>)
+              </li>
+              )
             }
+
             {
-              actorTv?.cast.map((item) => <li key={item.id}>
-              <img src={`http://image.tmdb.org/t/p/original${item.profile_path}`}/>
-              <p>{item.name}</p>
-              </li>)
+              actorTv?.cast.map((item) => <li key={item.cast_id}>
+                <img src={`http://image.tmdb.org/t/p/original${item.profile_path}`}/>
+                <p>{item.name}</p>
+              </li>
+              )
             }
             <More>
               <p>
@@ -103,6 +121,20 @@ const Detail = () => {
               </p>
             </More>
           </ActorDiv>
+
+          <Poster>
+            {
+              imageMovie?.posters.map((item) => <li key={item.file_path}>
+                <img src={`http://image.tmdb.org/t/p/w300${item.file_path}`}/>
+              </li>)
+            }
+
+            {
+              imageTv?.posters.map((item) => <li key={item.file_path}>
+                <img src={`http://image.tmdb.org/t/p/w300${item.file_path}`}/>
+              </li>)
+            }
+          </Poster>
         </Contents>
       </div>
     </Wrap>
@@ -201,6 +233,9 @@ const MovieContents = styled.div`
     flex-direction: column;
     padding: 30px;
     box-sizing: border-box;
+  `}
+  ${media.mobile`
+    height: auto;
   `}
 `
 
@@ -311,10 +346,14 @@ const MovieKeyword = styled.ul`
 const Contents = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  height: 100vh;
-  padding: 50px 0px 0px;
+  /* height: 100vh; */
+  height: auto;
+  display: flex;
+  overflow: hidden;
+  padding: 50px 0;
+  flex-direction: column;
   ${media.desktop`
-    padding: 20px 0px 30px;
+    padding: 20px 30px 30px;
   `}
 `
 
@@ -328,17 +367,16 @@ const ActorDiv = styled.div`
   ::-webkit-scrollbar-thumb {
     background-color: #979797;
     border-radius: 5px;
-  }
+  };
   ::-webkit-scrollbar {
     width: 6px;
-    height: 6px;
-  }
+    height: 5px;
+  };
   & li{
     background-color: #fff;
     min-height: 100%;
     min-width: 150px;
     display: inline-flex;
-    border-radius: 8px;
     flex-direction: column;
     margin: 0 10px;
     &:nth-child(n+11){
@@ -368,15 +406,14 @@ const ActorDiv = styled.div`
         background-color: #ebebeb;
       }
     }
+
   }
   & img{
-    height: 225px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    height: 200px;
   }
   & p{
     padding: 0 10px;
-    height: calc(100% - 225px);
+    height: calc(100% - 200px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -384,32 +421,63 @@ const ActorDiv = styled.div`
     line-height: 1.2;
     padding: 5px 0;
     font-weight: 500;
+    font-size: 16px;
   }
 
   ${media.desktop`
-    width: inherit;
-    & li{min-width: 130px;}
-    & img{height: 180px}
-    & p{height: calc(100% - 180px);}
-  `}
-
-  ${media.medium`
-    & li{min-width: 110px;}
-    & img{height: 165px}
-    & p{
-      height: calc(100% - 165px);
+    width: 100%;
+    & li{ min-width: 130px; }
+    & img{ height: 180px; }
+    & p{ 
+      height: calc(100% - 180px);
       font-size: 14px;
-      padding: 0;
+      padding: 5px 10px;
     }
   `}
 
-  ${media.mobile`
-    & li{min-width: 100px;}
-    & img{height: 157px}
-    & p{height: calc(100% - 157px)}
+  ${media.medium`
+    & li{ min-width: 115px; }
+    & img{ height: 170px; }
+    & p{ 
+      height: calc(100% - 170px);
+      padding: 5px;
+    }
   `}
 `
 
 const More = styled.li`
   display: flex;
+`
+
+const Poster = styled.div`
+  display: flex;
+  overflow: auto;
+  margin-top: 50px;
+  & li{
+    padding: 0 10px;
+  }
+  ::-webkit-scrollbar-track {background-color: inherit;}
+  ::-webkit-scrollbar-thumb {
+    background-color: #979797;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 5px;
+  }
+  ${media.desktop`
+    & li{
+      & img{
+        height: 350px;
+      }
+    }
+  `}
+
+  ${media.medium`
+    & li{
+      & img{
+        height: 250px;
+      }
+    }
+  `}
 `

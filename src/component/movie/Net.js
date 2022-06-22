@@ -20,7 +20,10 @@ const Net = () => {
 
     useEffect(() => {
         axios.get(`${API_URL}trending/all/day?api_key=${API_KEY}&language=ko`)
-            .then((res) => setTrand(res.data.results))
+            .then((res) => {
+                console.log(res.data.results)
+                setTrand(res.data.results)
+            })
 
         axios.get(`${API_URL}movie/popular?api_key=${API_KEY}&language=ko`)
             .then((res) => {

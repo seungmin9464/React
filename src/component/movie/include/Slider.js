@@ -5,117 +5,58 @@ import { media } from '../../../style/media_query'
 // 스와이퍼 js
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const SliderDiv = ({
   trand,
   popular,
   comming
 }) => {
+  const slide = [
+    {id : 1, title: '최신 트렌드', name: trand, media_type: null},
+    {id : 2, title: '인기 영화', name: popular, media_type: 'movie'},
+    {id : 3, title: '개봉 예정 영화', name: comming, media_type: 'movie'},
+  ]
 
   return (
     <>
-      <SlideWrap>
-        <h2>트렌드 영화 목록</h2>
+      {
+        slide.map((item) => <SlideInner key={item.id}>
+          <SlideWrap>
+          <h2>{item.title}</h2>
 
-        <SlideInner>
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={2}
-            scrollbar={{ draggable: true }}
-            pagination={{ clickable: true }}
-            loop={true}
-            breakpoints={{
-              768: {
-                slidesPerView: 5,
-              },
-              1024: {
-                slidesPerView: 7,
-              },
-            }}
-          >
-            {
-              trand.map((movie) =>
-                <SwiperSlide key={movie.id}>
-                  <SlideContents>
-                    <Contents>
-                      <Movie movie={movie} />
-                    </Contents>
-                  </SlideContents>
-                </SwiperSlide>
-              )
-            }
-          </Swiper>
-        </SlideInner>
-      </SlideWrap>
-
-      <SlideWrap>
-        <h2>인기 영화</h2>
-
-        <SlideInner>
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={2}
-            scrollbar={{ draggable: true }}
-            pagination={{ clickable: true }}
-            loop={true}
-            breakpoints={{
-              768: {
-                slidesPerView: 5,
-              },
-              1024: {
-                slidesPerView: 7,
-              },
-            }}
-          >
-            {
-              popular.map((movie) =>
-                <SwiperSlide key={movie.id}>
-                  <SlideContents>
-                    <Contents>
-                      <Movie movie={movie} />
-                    </Contents>
-                  </SlideContents>
-                </SwiperSlide>
-              )
-            }
-          </Swiper>
-        </SlideInner>
-      </SlideWrap>
-
-      <SlideWrap>
-        <h2>개봉 예정 영화</h2>
-
-        <SlideInner>
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={2}
-            scrollbar={{ draggable: true }}
-            pagination={{ clickable: true }}
-            loop={true}
-            breakpoints={{
-              768: {
-                slidesPerView: 5,
-              },
-              1024: {
-                slidesPerView: 7,
-              },
-            }}
-          >
-            {
-              comming.map((movie) =>
-                <SwiperSlide key={movie.id}>
-                  <SlideContents>
-                    <Contents>
-                      <Movie movie={movie} />
-                    </Contents>
-                  </SlideContents>
-                </SwiperSlide>
-              )
-            }
-          </Swiper>
-        </SlideInner>
-      </SlideWrap>
+          <SlideInner>
+            <Swiper
+              slidesPerView={3}
+              spaceBetween={2}
+              scrollbar={{ draggable: true }}
+              pagination={{ clickable: true }}
+              loop={true}
+              breakpoints={{
+                768: {
+                  slidesPerView: 5,
+                },
+                1024: {
+                  slidesPerView: 7,
+                },
+              }}
+            >
+              {
+                item.name.map((movie) =>
+                  <SwiperSlide key={movie.id}>
+                    <SlideContents>
+                      <Contents>
+                        <Movie movie={movie} media_type={item.media_type} />
+                      </Contents>
+                    </SlideContents>
+                  </SwiperSlide>
+                )
+              }
+            </Swiper>
+          </SlideInner>
+        </SlideWrap>
+        </SlideInner>)
+      }
     </>
   );
 };
