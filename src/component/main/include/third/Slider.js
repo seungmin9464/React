@@ -5,14 +5,14 @@ import { media } from '../../../../style/media_query';
 import { useTheme } from '../../../../context/themeProvider';
 
 const slideData = [
-  { id: 0, img: './image/pub/img-pub1.png', link: 'https://www.kiwontech.com/' },
-  { id: 1, img: './image/pub/img-pub2.png', link: 'https://secuecloud.co.kr/' },
-  { id: 2, img: './image/pub/img-pub3.png', link: 'https://secu-email.com/' },
-  { id: 3, img: './image/pub/img-pub4.png', link: 'http://withus.cc/' },
-  { id: 4, img: './image/pub/img-pub5.png', link: 'https://kissu.co.kr/' },
-  { id: 5, img: './image/pub/img-pub6.png', link: 'http://www.kpta.co.kr/science' },
-  { id: 6, img: './image/pub/img-pub7.png', link: 'http://lbtraders.co.kr/main' },
-  { id: 7, img: './image/pub/img-pub8.png', link: 'http://www.leehyobio.com/main' },
+  { id: 0, img: './image/pub/img-pub1.png', link: 'https://www.kiwontech.com/', name: '기원테크' },
+  { id: 1, img: './image/pub/img-pub2.png', link: 'https://secuecloud.co.kr/', name: '시큐이클라우드' },
+  { id: 2, img: './image/pub/img-pub3.png', link: 'https://secu-email.com/', name: '시큐이메일' },
+  { id: 3, img: './image/pub/img-pub4.png', link: 'http://withus.cc/', name: '위더스' },
+  { id: 4, img: './image/pub/img-pub5.png', link: 'https://kissu.co.kr/', name: '키슈' },
+  { id: 5, img: './image/pub/img-pub6.png', link: 'http://www.kpta.co.kr/science', name: '대한물리치료사협회' },
+  { id: 6, img: './image/pub/img-pub7.png', link: 'http://lbtraders.co.kr/main', name: '엘비크레이더스' },
+  { id: 7, img: './image/pub/img-pub8.png', link: 'http://www.leehyobio.com/main', name: '이효바이오' },
 ]
 
 const SliderDiv = () => {
@@ -45,6 +45,7 @@ const SliderDiv = () => {
                   <Contents>
                     <a href={item.link} target='_blank'>
                       <img src={item.img} />
+                      <p>[ {item.name} ]</p>
                     </a>
                   </Contents>
                 </SlideContents>
@@ -120,5 +121,11 @@ const Contents = styled.div`
     display: block;
     overflow: hidden;
     & img{ width: 100%; }
+    & p{ 
+      margin: 10px 0;
+      text-align: center;
+      color: ${({ theme }) => theme.textColor};
+      font-weight: 500;
+    }
    }
  `

@@ -5,30 +5,27 @@ import Header from "./include/Header";
 import SliderDiv from "./include/Slider";
 import { media } from "../../style/media_query";
 import { API_KEY, API_URL } from "./Config";
-import Footer from "../main/include/Footer";
 import axios from 'axios';
+import Footer from "./include/Footer";
 
 const Net = () => {
-    const [trand, setTrand] = useState([])                  //트렌드 영화 목록
-    const [popular, setPopular] = useState([])              //인기인는 영화 목록
-    const [comming, setComming] = useState([])
-    
+    const [trand, setTrand] = useState([])                  //오늘의 모든 인기 목록
+    const [trandMovie, setTrandMovie] = useState([])        //오늘의 인기 영화 목록
+    const [trandTv, setTrandTv] = useState([])              //오늘의 인기 티비 목록
+    const [comming, setComming] = useState([])              //개봉 예정작 목록
     const [mainBanner, setMainBanner] = useState([])
-    const [filtered, setFiltered] = useState([])
 
     const [activeGenre, setActiveGenre] = useState(0)
 
     useEffect(() => {
         axios.get(`${API_URL}trending/all/day?api_key=${API_KEY}&language=ko`)
-            .then((res) => {
-                console.log(res.data.results)
-                setTrand(res.data.results)
-            })
-
-        axios.get(`${API_URL}movie/popular?api_key=${API_KEY}&language=ko`)
-            .then((res) => {
-                setPopular(res.data.results)
-            })
+            .then((res) => setTrand(res.data.results))
+           
+        axios.get(`${API_URL}trending/movie/day?api_key=${API_KEY}&language=ko`)
+            .then((res) => setTrandMovie(res.data.results))
+            
+        axios.get(`${API_URL}trending/tv/day?api_key=${API_KEY}&language=ko`)
+            .then((res) => setTrandTv(res.data.results))
 
         axios.get(`${API_URL}movie/upcoming?api_key=${API_KEY}&language=ko`)
             .then((res) => setComming(res.data.results))
@@ -39,13 +36,9 @@ const Net = () => {
 
     return (
         <NetWrap>
-            <Header
-                popular={popular}
-                setFiltered={setFiltered}
-                activeGenre={activeGenre}
-                setActiveGenre={setActiveGenre} />
+            <Header/>
 
-            <MainBanner filtered={filtered}>
+            <MainBanner>
                 {
                     mainBanner.map((movie) => {
                         return <Banner
@@ -59,10 +52,11 @@ const Net = () => {
             <PopilarMovies>
                 <SliderDiv
                     trand={ trand }
-                    popular={ popular }
+                    trandMovie={ trandMovie }
+                    trandTv={ trandTv }
                     comming={ comming } />
             </PopilarMovies>
-            <Footer />
+            <Footer/>
         </NetWrap>
     );
 };
@@ -70,7 +64,7 @@ const Net = () => {
 export default Net;
 
 const NetWrap = styled.section`
-    background-color: #000;
+    background: #fff;
     .sc-jIZahH{
         background-color: #171717;
         border-top: none;
@@ -81,24 +75,24 @@ const NetWrap = styled.section`
 
 const MainBanner = styled.div`
     width: 100%;
-    height: 500px;
+    /* height: calc(100vh - 80px); */
+    height: 770px;
     margin-bottom: 20px;
-    padding-top: 80px;
     overflow: hidden;
     & div:nth-child(n+100){
         display: none;
     }
-    ${media.pc`
-        height: 70vh;
+    ${media.desktop`
+        height: 550px;
     `}
     ${media.tablet`
-        height: 60vh;
+        height: 450px;
     `}
     ${media.medium`
-        height: 40vh;
+        height: 400px;
     `}
     ${media.mobile`
-        height: 25vh;
+        height: 200px;
     `}
 `
 

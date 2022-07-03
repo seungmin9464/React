@@ -1,3 +1,4 @@
+import Item from 'antd/lib/list/Item';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { media } from '../../style/media_query'
@@ -15,24 +16,13 @@ const Movie = ({ movie, media_type }) => {
 export default Movie;
 
 const Card = styled.div`
-  & div{
-    position: absolute;
-    bottom: 20px;
-    color: #fff;
-    font-weight: 600;
-    margin-left: 10px;
-    width: 80px;
-    height: 36px;
-    font-size: 12px;
-    word-break: keep-all;
-  }
+  box-sizing: border-box;
+
   & img{
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     object-fit: cover;
-    border-radius: 1rem;
-    padding: 5px;
-    box-sizing: border-box;
+    box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.3);
   }
   ${media.mobile`
     & img{

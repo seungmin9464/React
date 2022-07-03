@@ -26,4 +26,9 @@ export const media = {
       ${css(...args)}
     }
   `,
+  pcMore: (...args) => css`
+    @media (max-width: 1700px) {
+      ${css(...args)}
+    }
+  `,
 };

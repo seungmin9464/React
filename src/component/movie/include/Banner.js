@@ -5,10 +5,8 @@ const Banner = ({ movie }) => {
   return (
     <BannerWrap>
       <BannerDiv>
-        <Gradiant />
         <img src={"http://image.tmdb.org/t/p/original" + movie.backdrop_path} alt='' />
       </BannerDiv>
-      <p>{movie.title}</p>
     </BannerWrap>
   );
 };
@@ -18,19 +16,6 @@ export default Banner;
 const BannerWrap = styled.div`
   position: relative;
   height: 100%;
-  & p{
-    position: absolute;
-    margin: 30px;
-    font-size: 24px;
-    font-weight: 900;
-    color: #fff;
-    bottom: 0;
-  }
-  ${media.medium`
-    & p{
-      font-size: 16px;
-    }
-  `}
 `
 
 const BannerDiv = styled.div`
@@ -41,10 +26,13 @@ const BannerDiv = styled.div`
     top: 50%;
   }
   ${media.tablet`
-    height: 75vh;
+  height: 450px;
   `}
   ${media.medium`
-     height: 40vh;
+     height: 400px;
+  `}
+  ${media.mobile`
+    height: 200px;
   `}
 `
 
@@ -57,8 +45,4 @@ const BannerText = styled.div`
   padding-left: 20px;
   bottom: 20px;
   color: #fff;
-`
-
-const Gradiant = styled.div`
-
 `

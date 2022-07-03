@@ -1,46 +1,19 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { media } from '../../../style/media_query';
 import styled from 'styled-components';
 
-const Header = ({
-  popular,
-  setFiltered,
-  activeGenre,
-  setActiveGenre
-}) => {
-
-  useEffect(() => {
-    if(activeGenre === 0){
-      setFiltered(popular)
-      return
-    }
-    const filtered = popular.filter((movie) => 
-      movie.genre_ids.includes(activeGenre)
-    )
-    setFiltered(filtered)
-  }, [activeGenre])
-
+const Header = () => {
   return (
     <HeaderDiv>
       <FilterContainer>
-        <LeftDiv>
-          <Logo>
-            BEAKFLIX
-          </Logo>
-          {/* <BtnWrap>
-            <button
-              onClick={() => setActiveGenre(0)}>All</button>
-            <button
-              onClick={() => setActiveGenre(28)}>TV</button>
-            <button
-              onClick={() => setActiveGenre(18)}>Movie</button>
-            <button
-              onClick={() => setActiveGenre(18)}>Trend</button>
-          </BtnWrap> */}
-        </LeftDiv>
+        <LeftDiv></LeftDiv>
 
-        {/* <RightDiv>
-          menu
-        </RightDiv> */}
+        <Logo>
+          <Link to='/Net'>BEAKFLIX</Link>
+        </Logo>
+
+        <RightDiv></RightDiv>
       </FilterContainer>
     </HeaderDiv>
   );
@@ -49,10 +22,9 @@ const Header = ({
 export default Header;
 
 const HeaderDiv = styled.header`
-  z-index: 10;
+  z-index: 9999;
   position: fixed;
   display: flex;
-  background-color: #000;
   width: 100%;
   height: 80px;
   align-items: center;
@@ -64,6 +36,10 @@ const FilterContainer = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  ${media.pc`
+    min-width: inherit;
+    width: 100%;
+  `}
 `
 
 const LeftDiv = styled.div`
@@ -72,7 +48,8 @@ const LeftDiv = styled.div`
   align-items: flex-end;
 `
 const Logo = styled.div`
-  color: #00d090;
+  color: #fff;
+  text-shadow: -1px 0px #333, 0px 1px #333, 1px 0px #333, 0px -1px #333;
   font-weight: 900;
   font-size: 30px;
   letter-spacing: -2px;
