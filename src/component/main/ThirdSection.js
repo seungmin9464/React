@@ -9,11 +9,11 @@ const linklist = [
     link: '/movie',
     name: '홈페이지',
   },
-  {
-    id: 2,
-    link: '',
-    name: '상세보기'
-  },
+  // {
+  //   id: 2,
+  //   link: '',
+  //   name: '상세보기'
+  // },
 ]
 
 const ThirdSection = () => {
@@ -26,7 +26,10 @@ const ThirdSection = () => {
             <ContentsText>
 
               <div>
-                <Title>홈페이지 버튼을 눌러주세요. <br/>준비중입니다.</Title>
+                <Title>
+                  최신 영화와 곧 있음 개봉 될 영화의<br/>
+                  정보들을 볼수 있도록 홈페이지를 제작하였습니다.
+                </Title>
               </div>
 
               <LinkMove>
@@ -46,7 +49,7 @@ const ThirdSection = () => {
           <RightDiv>
             <ContentsArea>
               <Contents1 />
-              <Contents2 />
+              <Contents2>BEAKFLIX</Contents2>
             </ContentsArea>
           </RightDiv>
         </ContentsInner>
@@ -85,6 +88,13 @@ const ContentsWrap = styled.div`
       }
     }
   `}
+  ${media.tablet`
+    & > div{
+      &:nth-child(2){
+        margin-top: 50px;
+      }
+    }
+  `}
 `
 
 const H1 = styled.h1`
@@ -103,12 +113,15 @@ const H1 = styled.h1`
 
 const ContentsInner = styled.div`
   width: 100%;
-  height: 60vh;
+  height: calc(100vh - 300px);
   display: flex;
   align-items: center;
   ${media.desktop`
     flex-direction: column;
     height: 100vh;
+  `}
+  ${media.medium`
+    flex-direction: column;
   `}
   ${media.mobile`
     flex-direction: column;
@@ -123,7 +136,14 @@ const LeftDiv = styled.div`
     width: 100%;
     text-align: center;
   `}
-  ${media.tablet`width: 100%;`}
+  ${media.tablet`
+    width: 100%;
+    height: 50%;
+  `}
+  ${media.medium`
+    width: 100%;
+    height: 40%;
+  `}
 `
 
 const ContentsText = styled.div`
@@ -142,7 +162,7 @@ const ContentsText = styled.div`
 
 const Title = styled.h3`
   color: #858585;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   width: 100%;
   text-align: center;
@@ -180,17 +200,11 @@ const LinkList = styled.ul`
 
 const RightDiv = styled.div`
   width: 65%;
-  height: 100%;
+  height: 80%;
   ${media.desktop`width: 100%;`}
   ${media.tablet`
     width: 100%;
-    height: 150%;
-  `}
-  ${media.medium`
-    height: 100%;
-  `}
-  ${media.mobile`
-    height: 100%;
+    height: 50%;
   `}
 `
 
@@ -218,55 +232,47 @@ const ContentsArea = styled.div`
 
 const Contents1 = styled.div`
   width: 70%;
-  height: 100%;
+  height: 90%;
   position: absolute;
   right: 100px;
-  bottom: 25px;
+  top: 0px;
   border: ${({ theme }) => theme.borderColor};
   ${media.desktop`
-    width: 100%;
-    height: 100%;
-    right: -20px;
-    bottom: 30px;
+
+  `}
+  ${media.medium`
+    width: 85%;
+    right: 0;
   `}
   ${media.tablet`
-    width: 100%;
-    height: 70%;
-    right: -20px;
-    bottom: 40px;
-  `}
-  ${media.mobile`
-    width: 90%;
-    height: 65%;
-    right: 0px;
-    bottom: 70px;
+    font-size: 45px;
   `}
 `
 
 const Contents2 = styled.div`
   width: 70%;
-  height: 100%;
+  height: 90%;
   position: absolute;
   left: 100px;
-  top: 25px;
+  bottom: 0px;
   z-index: 1;
   background-color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.bgColor};
+  font-weight: 900;
+  letter-spacing: -4px;
+  font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease .3s;
   ${media.desktop`
-    width: 100%;
-    left: -20px;
-    height: 100%;
-    top: 30px;
+
   `}
   ${media.tablet`
-    width: 100%;
-    height: 70%;
-    left: -20px;
-    top: 40px;
+    font-size: 45px;
   `}
-  ${media.mobile`
-    width: 90%;
-    height: 65%;
-    left: 0px;
-    top: 70px;
+  ${media.medium`
+    width: 85%;
+    left: 0;
   `}
 `

@@ -9,7 +9,7 @@ const Footer = () => {
       <div>
       <FooterLogo>
         <a href='/'>
-          <img src='./image/logo.png'/>
+          <img src='../image/logo.png'/>
         </a>
       </FooterLogo>
 
@@ -52,11 +52,20 @@ const FooterDiv = styled.div`
     padding: 0px 20px;
     margin: 0 auto;
   }
+  &.footer{
+    position: relative;
+    margin-top: 10vh;
+  }
+  ${media.medium`
+  &.footer{
+    margin-top: 0px;
+  }
+  `}
 `
 
 const FooterLogo = styled.p`
   width: 100%;
-  & a{ 
+  & a{
     width: 40px; 
     display: block;
     margin: 0 auto;

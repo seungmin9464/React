@@ -95,15 +95,18 @@ const SlideWrap = styled.div`
 `
 
 const SlideInner = styled.div`
-     margin-top: 20px;
-     width: 100%;
-     & > div{
-       color: #fff;
-       height: 300px;
-     }
-     ${media.desktop`
-     margin-bottom: 50px;
-    `}
+  margin-top: 20px;
+  width: 100%;
+  & > div{
+    color: #fff;
+    height: 300px;
+  }
+  ${media.desktop`
+    margin-bottom: 50px;
+  `}
+  ${media.tablet`
+    height: 250px;
+  `}
  `
 
 const SlideContents = styled.div`
