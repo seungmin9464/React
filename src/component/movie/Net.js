@@ -7,15 +7,19 @@ import { media } from "../../style/media_query";
 import { API_KEY, API_URL } from "./Config";
 import axios from 'axios';
 import Footer from "./include/Footer";
+import SearchForm from "./include/SearchForm";
 
 const Net = () => {
     const [trand, setTrand] = useState([])                  //오늘의 모든 인기 목록
     const [trandMovie, setTrandMovie] = useState([])        //오늘의 인기 영화 목록
     const [trandTv, setTrandTv] = useState([])              //오늘의 인기 티비 목록
     const [comming, setComming] = useState([])              //개봉 예정작 목록
-    const [mainBanner, setMainBanner] = useState([])
+    const [searchTerm, setSearchTerm] = useState('')        //검색어 폼
+    const [searchList, setSearchList] = useState([])        //검색 리스트
 
-    const [activeGenre, setActiveGenre] = useState(0)
+    const [media_type, setmedia_type] = useState('')        //미디어 타입
+
+    const SEARCH_API = `${API_URL}search/multi?&api_key=${API_KEY}&language=ko&query=`
 
     useEffect(() => {
         axios.get(`${API_URL}trending/all/day?api_key=${API_KEY}&language=ko`)
@@ -29,32 +33,50 @@ const Net = () => {
 
         axios.get(`${API_URL}movie/upcoming?api_key=${API_KEY}&language=ko`)
             .then((res) => setComming(res.data.results))
-
-        axios.get(`${API_URL}trending/all/day?api_key=${API_KEY}&language=ko`)
-            .then((res) => setMainBanner(res.data.results))
     }, [])
+
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+
+        if(searchTerm){
+            fetch(SEARCH_API + searchTerm)
+            .then((res) => res.json())
+            .then((data) => {
+                setSearchList(data.results)
+            })
+            setSearchTerm('')
+        }
+    }
+
+    const handleOnChange = (e) => {
+        setSearchTerm(e.target.value);
+    }
 
     return (
         <NetWrap>
-            <Header/>
+            <Header 
+                searchTerm={ searchTerm } 
+                handleOnSubmit={ handleOnSubmit } 
+                handleOnChange={ handleOnChange }
+                media_type={ media_type }/>
 
             <MainBanner>
-                {
-                    mainBanner.map((movie) => {
-                        return <Banner
-                            key={movie.id}
-                            movie={movie}>
-                        </Banner>
-                    })
-                }
+                <Banner/>
             </MainBanner>
 
             <PopilarMovies>
-                <SliderDiv
-                    trand={ trand }
-                    trandMovie={ trandMovie }
-                    trandTv={ trandTv }
-                    comming={ comming } />
+                {
+                    searchList == 0 ?                
+                    <SliderDiv
+                        trand={ trand }
+                        trandMovie={ trandMovie }
+                        trandTv={ trandTv }
+                        comming={ comming }/> :
+                    <SearchForm
+                        searchList={ searchList }
+                        media_type={media_type}/>
+                }
+
             </PopilarMovies>
             <Footer/>
         </NetWrap>

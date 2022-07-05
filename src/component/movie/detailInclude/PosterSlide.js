@@ -122,11 +122,9 @@ const SlideWrap = styled.div`
 
   ${media.pc`
     & .actorSlide{
-      & .actor{
-        & img{
-          width: 180px !important;
-          height: 280px !important;
-        }
+       & img{
+        width: 180px !important;
+        height: 280px !important;
       }
     }
   `}
@@ -134,33 +132,17 @@ const SlideWrap = styled.div`
   ${media.medium`
     & .swiper-3d{
       perspective: 3000px !important;
+      padding: 25px 0;
     }
-    & .swiper-slide-active{
-      & .poster{
-      }
-    }
+    & h1{font-size: 40px;}
+    & p{font-size: 16px;}
   `}
 
   ${media.mobile`
-    & .actorSlide{
-      padding-left: 10px;
-      & .actor{
-        & img{
-          width: 90px !important;
-          height: 140px !important;
-        }
-      }
-    }
+    & h1{font-size: 30px;}
     & p{
-      margin-top: -15px;
+      margin-top: -10px;
       font-size: 16px;
-      &.actorName{
-        font-size: 14px;
-        height: 42px;
-      }
-    }
-    & h1{
-      font-size: 40px;
     }
   `}
 `
@@ -170,6 +152,7 @@ const SlideDivWrap = styled.div`
   padding: 50px 0;
   & .swiper-3d{
     overflow: inherit;
+    padding: 0;
   }
   & .swiper-wrapper{
     display: flex;
@@ -182,7 +165,11 @@ const SlideDivWrap = styled.div`
         width: 100%;
       }
     }
-  } 
+  }
+
+  ${media.medium`
+    padding: 25px 0 50px;
+  `}
 `
 
 const SlideDiv = styled.div`

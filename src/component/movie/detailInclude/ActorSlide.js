@@ -48,7 +48,7 @@ const ActorSlide = () => {
             spaceBetween={30}
             autoHeight={false}
             breakpoints={{
-              790: {
+              875: {
                 slidesPerView: 4,
               },
               1024: {
@@ -147,13 +147,8 @@ const SlideWrap = styled.div`
   `}
 
   ${media.medium`
-    & .swiper-3d{
-      perspective: 3000px !important;
-    }
-    & .swiper-slide-active{
-      & .poster{
-      }
-    }
+    & h1{font-size: 40px;}
+    & p{font-size: 16px;}
   `}
 
   ${media.mobile`
@@ -162,20 +157,18 @@ const SlideWrap = styled.div`
       & .actor{
         & img{
           width: 90px !important;
-          height: 140px !important;
+          height: 130px !important;
         }
       }
     }
+    & h1{font-size: 30px;}
     & p{
-      margin-top: -15px;
+      margin-top: -10px;
       font-size: 16px;
       &.actorName{
         font-size: 14px;
         height: 42px;
       }
-    }
-    & h1{
-      font-size: 40px;
     }
   `}
 `
@@ -226,6 +219,10 @@ const SlideDivWrap = styled.div`
       }
     }
   } 
+
+  ${media.medium`
+    padding: 25px 0;
+  `}
 `
 
 const SlideDiv = styled.div`

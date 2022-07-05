@@ -103,14 +103,14 @@ const Contents = styled.div`
     height: auto;
   }
 
-  ${media.tablet`
-    height: 780px;
-    margin-top: -300px;
+  ${media.desktop`
+    height: 450px;
   `}
-
-  ${media.mobile`
-    height: 500px;
-    margin-top: -310px;
+  ${media.tablet`
+    height: auto;
+  `}
+  ${media.medium`
+    margin-top: -150px;
   `}
 `
 
@@ -124,22 +124,17 @@ const InfoWrap = styled.div`
   background-color: rgba(225, 225, 225,  0.3);
   border-radius: 10px;
   box-shadow: 8px 8px 10px rgb(0, 0, 0, 10%);
-  
+
   ${media.desktop`
     width: 100%;
   `}
 
   ${media.tablet`
     flex-direction: column;
-    justify-content: space-evenly;
-    padding: 30px 0;
   `}
 
-  ${media.mobile`
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 30px 0;
+  ${media.medium`
+    border-radius: 5px;
   `}
 `
 
@@ -154,18 +149,12 @@ const Card = styled.div`
     max-width: 100%;
     height: auto;
   }
-
-  ${media.desktop`
-    width: 300px;
-    height: 400px;
-  `}
-
   ${media.tablet`
-    height: initial;
+    height: auto;
+    margin: 20px 0;
   `}
-
-  ${media.mobile`
-    width: 180px;
+  ${media.medium`
+    width: 150px;
   `}
 `
 
@@ -190,6 +179,7 @@ const InfoInner = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    margin: 10px 0;
   }
 
   ${media.desktop`
@@ -212,7 +202,7 @@ const InfoInner = styled.div`
   ${media.mobile`
     margin-top: 20px;
     & .title{ font-size: 20px; }
-    & .subTitle{ font-size: 14px; }
+    & .subTitle{ font-size: 14px; margin: 5px 0 0; }
   `}
 `
 
@@ -265,7 +255,7 @@ const OverView = styled.div`
   `}
 
   ${media.tablet`
-    margin: 10px 0;
+    margin: 10px 0 20px;
   `}
 
   ${media.mobile`

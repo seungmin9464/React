@@ -61,10 +61,21 @@ const GlobalStyle = createGlobalStyle`
     img {
         border: 0;
     }
+    input {
+        border-radius:4px;
+        box-shadow: none;
+        font-size:1em;
+        -webkit-appearance:none;
+        -moz-appearance: none;
+        -o-appearance:none;
+        appearance: none;
+        border: 0px;
+    }
     button, input, optgroup, select, textarea {
         color: inherit; /* 1 */
         font: inherit; /* 2 */
         margin: 0; /* 3 */
+        border: 0;
     }
     button,
     html input[type="button"], /* 1 */

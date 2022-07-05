@@ -1,6 +1,11 @@
 import { css } from 'styled-components';
 
 export const media = {
+  small: (...args) => css`
+    @media (max-width: 375px) {
+      ${css(...args)}
+    }
+  `,
   mobile: (...args) => css`
     @media (max-width: 576px) {
       ${css(...args)}

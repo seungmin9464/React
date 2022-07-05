@@ -10,13 +10,13 @@ const SliderDiv = ({
   trand,
   trandMovie,
   trandTv,
-  comming
+  comming,
 }) => {
   const slide = [
     { id: 1, title: '오늘의 인기작', name: trand, media_type: null },
     { id: 2, title: '오늘의 영화 인기작', name: trandMovie, media_type: 'movie' },
     { id: 3, title: '오늘의 드라마 인기작', name: trandTv, media_type: 'tv' },
-    { id: 5, title: '개봉 예정 영화', name: comming, media_type: 'movie' },
+    { id: 4, title: '개봉 예정 영화', name: comming, media_type: 'movie' },
   ]
 
   return (
@@ -28,17 +28,17 @@ const SliderDiv = ({
 
             <SlideInner>
               <Swiper
-                slidesPerView={3}
+                slidesPerView={3.5}
                 spaceBetween={2}
                 scrollbar={{ draggable: true }}
                 pagination={{ clickable: true }}
                 loop={true}
                 breakpoints={{
                   768: {
-                    slidesPerView: 5,
+                    slidesPerView: 4.5,
                   },
                   1024: {
-                    slidesPerView: 7,
+                    slidesPerView: 6.5,
                   },
                 }}
               >

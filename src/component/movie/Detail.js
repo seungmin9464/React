@@ -23,6 +23,11 @@ const Detail = () => {
   const [videoMovie, setVideoMovie] = useState()      //movie video list
   const [videoTv, setVideoTv] = useState()            //tv video list
 
+  const [searchTerm, setSearchTerm] = useState('')        //검색어 폼
+  const [searchList, setSearchList] = useState([])        //검색 리스트
+
+  const SEARCH_API = `${API_URL}search/multi?&api_key=${API_KEY}&language=ko&query=`
+
   // 데이터 불러오기
   useEffect(() => {
     if (media_type === "movie") {
@@ -45,9 +50,22 @@ const Detail = () => {
 
   // 데이터 조회
   if (media_type === "movie") {
-    if (  !detailMovie || !videoMovie) return false
+    if (!detailMovie || !videoMovie) return false
   } else if (media_type === "tv") {
-    if (  !detailTv || !videoTv) return false
+    if (!detailTv || !videoTv) return false
+  }
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault()
+
+    if(searchTerm){
+        fetch(SEARCH_API + searchTerm)
+        .then((res) => res.json())
+        .then((data) => {
+            setSearchList(data.results)
+        })
+        setSearchTerm('')
+    }
   }
 
   // 비디오 데이터 없는 경우 처리
@@ -55,13 +73,22 @@ const Detail = () => {
     try {
       if (typeof videoMovie != 'undefined') {
         return <SlideWrap>
+          
           <h1>VIDEO</h1>
           <p>예고편</p>
 
           <iframe src={`https://www.youtube.com/embed/${videoMovie.results[0].key}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
         </SlideWrap>
+        
       } else if (typeof videoTv != 'undefined') {
-        return <iframe src={`https://www.youtube.com/embed/${videoTv.results[0].key}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
+        return <SlideWrap>
+
+          <h1>VIDEO</h1>
+          <p>예고편</p>
+
+          <iframe src={`https://www.youtube.com/embed/${videoTv.results[0].key}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
+        </SlideWrap>
+
       } else {
         return false;
       }
@@ -76,30 +103,30 @@ const Detail = () => {
       <Wrap>
         <BgWrap>
           <Bg>
-            <div className='BgImage' style={{backgroundImage: `url('http://image.tmdb.org/t/p/original${detailMovie ? detailMovie.backdrop_path : detailTv.backdrop_path}')`, backgroundPosition: 'top center', backgroundSize: 'cover'}}>
+            <div className='BgImage' style={{ backgroundImage: `url('http://image.tmdb.org/t/p/original${detailMovie ? detailMovie.backdrop_path : detailTv.backdrop_path}')`, backgroundPosition: 'top center', backgroundSize: 'cover' }}>
               <Gradiant />
             </div>
           </Bg>
         </BgWrap>
 
         {/* Detail Card */}
-        <ContentsCard/>
+        <ContentsCard />
 
         <ContentsWrap>
           <MaxInner>
             <ContentsDiv>
               {/* 배우 슬라이드 */}
-              <ActorSlide/>
+              <ActorSlide />
             </ContentsDiv>
 
-            <ContentsDiv>
+            <ContentsDiv className='videoWrap'>
               {/* 비디오 영역 */}
               {videoWrap('iframeMovie ? iframeTv : iframeMovie')}
             </ContentsDiv>
 
             <ContentsDiv>
               {/* 포스터 슬라이드 */}
-              <PosterSlide/>
+              <PosterSlide />
             </ContentsDiv>
           </MaxInner>
 
@@ -134,7 +161,7 @@ const MaxInner = styled.div`
 `
 
 const Wrap = styled.div`
-  background-color: #fff;
+  background-color: #f8f8f8;
   position: relative;
   height: auto;
   overflow: hidden;
@@ -198,13 +225,11 @@ const ContentsWrap = styled.div`
   position: inherit;
   & > div{height: auto}
   
-  ${media.tablet`
-    padding-top: 580px;
-  `}
-
-  ${media.mobile`
-    padding-top: 280px;
-  `}
+  ${media.desktop`padding-top: 280px;`}  
+  ${media.tablet`padding-top: 500px;`}
+  ${media.medium`padding-top: 450px;`}
+  ${media.mobile`padding-top: 400px;`}
+  ${media.small`padding-top: 430px;`}
 `
 
 const ContentsDiv = styled.div`
@@ -222,6 +247,23 @@ const ContentsDiv = styled.div`
   & .posterDivWrap{
     overflow: hidden;
   }
+  &.videoWrap{
+    & h1{
+      width: 100%;
+      text-align: center;
+      font-size: 50px;
+      font-weight: 900;
+      color: #333;
+    }
+    & p{
+      width: 100%;
+      margin-bottom: 0px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 500;
+      color: #6e6e6e;
+    }
+  }
   ${media.desktop`
     &:nth-child(n+2){
       margin-top: 10vh;
@@ -230,10 +272,21 @@ const ContentsDiv = styled.div`
       height: 600px;
     }
   `}
-
   ${media.tablet`
     & iframe{
       height: 450px;
+    }
+  `}
+  ${media.medium`
+    & iframe{
+      margin: 25px 0;
+    }
+  `}
+
+  ${media.medium`
+    &.videoWrap{
+      & h1{font-size: 40px;}
+      & p{font-size: 16px;}
     }
   `}
 
@@ -243,6 +296,13 @@ const ContentsDiv = styled.div`
     }
     & iframe{
       height: 250px;
+    }
+    &.videoWrap{
+      & h1{font-size: 30px;}
+      & p{
+        margin-top: -10px;
+        font-size: 16px;
+      }
     }
   `}
 `
