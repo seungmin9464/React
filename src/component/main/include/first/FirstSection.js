@@ -15,7 +15,7 @@ const FirstSection = ({ chanege }) => {
                 <TypingText chanege={chanege}>
                     <Typewriter
                         options={{
-                            strings: ['Seungmin', 'Publisher', 'Developer'],
+                            strings: ['Seungmin', 'Publisher', 'Developer123'],
                             autoStart: true,
                             loop: true,
                         }}
